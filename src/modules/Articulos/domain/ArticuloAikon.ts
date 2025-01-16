@@ -9,13 +9,13 @@ import { ArticuloWeb } from './ArticuloWeb'
 import { NullArticuloWeb } from './NullArticuloWeb'
 import { IArticuloWebData } from '../types/ArticuloWeb.types'
 
-import { Familia } from '../../Jerarquias/domain/Familia'
-import { NullFamilia } from '../../Jerarquias/domain/NullFamilia'
-import { IFamiliaData } from '../../Jerarquias/types/Jerarquias.types'
+import { Familia } from './../../Jerarquias/domain/Familia'
+import { NullFamilia } from './../../Jerarquias/domain/NullFamilia'
+import { IFamiliaData } from './../../Jerarquias/types/Jerarquias.types'
 
-import { Marca } from '../../Marca/domain/Marca'
-import { NullMarca } from '../../Marca/domain/NullMarca'
-import { IMarcaData } from '../../Marca/types/Marcas.types'
+import { Marca } from './../../Marcas/domain/Marca'
+import { NullMarca } from './../../Marcas/domain/NullMarca'
+import { IMarcaData } from './../../Marcas/types/Marcas.types'
 
 interface ConstructorOptions {
   precioData?: IArticuloPrecioData

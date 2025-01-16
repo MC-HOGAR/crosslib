@@ -72,6 +72,11 @@
       "import": "./dist/esm/modules/*/types/index.js",
       "require": "./dist/cjs/modules/*/types/index.js"
     },
+    "./modules/*/schemas": {
+      "types": "./dist/types/modules/*/schemas/index.d.ts",
+      "import": "./dist/esm/modules/*/schemas/index.js",
+      "require": "./dist/cjs/modules/*/schemas/index.js"
+    },
     "./aws/*": {
       "types": "./dist/types/aws/*.d.ts",
       "import": "./dist/esm/aws/*.js",
