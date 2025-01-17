@@ -32,6 +32,8 @@ export type InternalUserStatus = 'Active' | 'Suspended'
 
 export type InternalUserGroup = 'root' | 'administrator' | 'operator' | 'marketing' | 'seller' | 'user'
 
+export const InternalUserGroups = ['root', 'administrator', 'operator', 'marketing', 'seller', 'vendor', 'customer', 'user', 'guest']
+
 export type InternalUserCreateRequest = Pick<IInternalUser, 'username' | 'email' | 'fullname' | 'group'>
 
 export enum CognitoUserAttributeNameEnum {
