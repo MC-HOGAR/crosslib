@@ -30,6 +30,8 @@ export enum InternalUserStatusEnum {
 
 export type InternalUserStatus = 'Active' | 'Suspended'
 
+export const InternalUserStatuses = ['Active', 'Suspended']
+
 export type InternalUserGroup = 'root' | 'administrator' | 'operator' | 'marketing' | 'seller' | 'user'
 
 export const InternalUserGroups = ['root', 'administrator', 'operator', 'marketing', 'seller', 'vendor', 'customer', 'user', 'guest']
