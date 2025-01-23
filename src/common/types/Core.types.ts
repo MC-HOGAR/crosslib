@@ -4,7 +4,7 @@ import { Maybe } from './Base.types'
 export type SqlId = number;
 
 /** Id from DynamoDB*/
-export type DynId = string; 
+export type DynId = string;
 
 /** Id from Aikon ERP */
 export type AikonCode = string;

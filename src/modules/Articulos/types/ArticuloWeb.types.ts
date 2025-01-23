@@ -6,4 +6,7 @@ export interface IArticuloWebData {
     ar_titulo : string
     ar_slug: string
     ar_galeria: IImageBucketFile[]
+    updated_at: string | null
+    updated_at_img_principal: string | null
+    updated_at_galeria: string | null
 }
