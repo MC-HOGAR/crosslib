@@ -9,9 +9,7 @@ const nullArticuloWebData: IArticuloWebData = {
     ar_titulo : '',
     ar_slug: '',
     ar_galeria: [],
-    updated_at: null,
-    updated_at_galeria: null,
-    updated_at_img_principal: null
+    updated_at: null
 }
 
 export class NullArticuloWeb extends ArticuloWeb {
