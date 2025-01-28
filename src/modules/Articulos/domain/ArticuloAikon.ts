@@ -44,8 +44,8 @@ export class ArticuloAikon {
   aik_ar_descria: string;
   aik_ar_mesesgarantia: number;
   aik_esa_codigo: string;
-  aik_ar_fechamodif: string;
-  aik_ar_fecha_alta: string;
+  aik_ar_fechamodif: string | null; // StringDate | null.
+  aik_ar_fecha_alta: string | null; // StringDate | null.
   aik_fa_codigo: string;
   aik_ma_codigo: string;
   aik_re1_codigo: string;
