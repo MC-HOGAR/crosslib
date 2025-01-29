@@ -16,21 +16,8 @@ export interface IImage {
 }
 
 export interface IBucketFile {
-    file_name: string
-    url: string
-    uploaded_at: string
-    file_size: number
-    mime_type: string
     bucket_name: string // The name of the S3 bucket where the file is stored.
     object_key: string // The full path or key of the object in the bucket
 }
 
-export interface IImageBucketFile extends IBucketFile {
-    alt_text: string
-    dimensions: IImageDimensions
-}
-
-export interface IImageDimensions {
-    width: number
-    height: number
-}
+export interface IImageBucketFile extends IBucketFile {}

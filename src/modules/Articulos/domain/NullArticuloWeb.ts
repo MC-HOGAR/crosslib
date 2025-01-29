@@ -4,7 +4,7 @@ import { IArticuloWebData } from '../types/ArticuloWeb.types'
 
 const nullArticuloWebData: IArticuloWebData = {
     aik_ar_codigo: '-1',
-    ar_url_img_principal: '',
+    ar_img_principal: null,
     ar_descripcion_web: '',
     ar_titulo : '',
     ar_slug: '',
