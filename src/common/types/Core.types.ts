@@ -3,7 +3,7 @@ import { Maybe } from './Base.types'
 /** Id from MySQL */
 export type SqlId = number;
 
-/** Id from DynamoDB*/
+/** Id from DynamoDB */
 export type DynId = string;
 
 /** Id from Aikon ERP */
@@ -16,8 +16,12 @@ export interface IImage {
 }
 
 export interface IBucketFile {
-    bucket_name: string // The name of the S3 bucket where the file is stored.
     object_key: string // The full path or key of the object in the bucket
 }
 
 export interface IImageBucketFile extends IBucketFile {}
+
+export interface ProgressiveImage { // Used for progressive image loading.
+    full: IImageBucketFile
+    placeholder: IImageBucketFile
+}

@@ -1,9 +1,9 @@
-import { IImageBucketFile } from '../../../common/types/Core.types'
+import { IImageBucketFile, ProgressiveImage } from '@/common/types/Core.types'
 import { IArticuloWebData } from '../types/ArticuloWeb.types'
 
 export class ArticuloWeb {
     aik_ar_codigo: string
-    ar_img_principal: IImageBucketFile | null
+    ar_img_principal: ProgressiveImage | null
     ar_descripcion_web: string
     ar_titulo: string
     ar_slug: string
