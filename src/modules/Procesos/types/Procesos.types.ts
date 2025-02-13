@@ -17,9 +17,16 @@ const TipoProcesoSincronizacionArticuloInfoRelevante: TipoProcesoInfo = {
     nombre: 'ProcesoSincronizacionArticuloInfoRelevante',
     descripcion: `Se sincronizan los atributos escenciales del artículo para mostrar en el ecommerce.`
 }
+export type IDS_TIPO_PROCESOS = 1 | 2
 
 Object.freeze(TipoProcesoProcesoSincronizacionConAikonCompleto)
 Object.freeze(TipoProcesoSincronizacionArticuloInfoRelevante)
+
+// Step names ProcesoInfo (se usan al iniciar y finalizar el proceso)
+enum StepNameProcesoInfoInicioFin {
+    IniciarProcesoInfo = "IniciarProcesoInfo",
+    FinalizarProcesoInfo = "FinalizarProcesoInfo"
+}
 
 // Step names ProcesoSincronizacionConAikonCompleto
 enum StepNameProcesoInfoDetalleSincronizacionConAikonCompleto {
@@ -40,9 +47,10 @@ enum StepNameProcesoInfoDetalleSincronizacionConAikonCompleto {
 enum StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante {
     ObtenerToken = "ObtenerToken",
     PrepararSincronizacionArticulosInfoRelevante = "PrepararSincronizacionArticulosInfoRelevante",
-    EjecutarSincronizacionArticulosInfoRelevante = "EjecutarSincronizacionArticulosInfoRelevante",
-    Right = "RIGHT",
+    EjecutarSincronizacionArticulosInfoRelevante = "EjecutarSincronizacionArticulosInfoRelevante"
 }
+
+export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto | StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoInicioFin
 
 enum EstadoEjecucion {
     Procesando = "Procesando",
@@ -54,5 +62,6 @@ export {
     TipoProcesoSincronizacionArticuloInfoRelevante,
     StepNameProcesoInfoDetalleSincronizacionConAikonCompleto,
     StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante,
+    StepNameProcesoInfoInicioFin,
     EstadoEjecucion
 }
