@@ -1,3 +1,4 @@
+import { SYSTEM_PROCESS_STATE_ALLOWED_VALUES } from '@/aws/dynamodb'
 interface TipoProcesoInfo {
     id: number
     nombre: string
@@ -18,6 +19,12 @@ const TipoProcesoSincronizacionArticuloInfoRelevante: TipoProcesoInfo = {
     descripcion: `Se sincronizan los atributos escenciales del artículo para mostrar en el ecommerce.`
 }
 export type IDS_TIPO_PROCESOS = 1 | 2
+export type NOMBRES_TIPO_PROCESOS = 'ProcesoSincronizacionConAikonCompleto' | 'ProcesoSincronizacionArticuloInfoRelevante'
+
+export interface ProcessStateUpdatePayload {
+    processId: NOMBRES_TIPO_PROCESOS,
+    state: SYSTEM_PROCESS_STATE_ALLOWED_VALUES
+}
 
 Object.freeze(TipoProcesoProcesoSincronizacionConAikonCompleto)
 Object.freeze(TipoProcesoSincronizacionArticuloInfoRelevante)
