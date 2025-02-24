@@ -51,6 +51,7 @@ export class ArticuloAikon {
   aik_re1_codigo: string;
   aik_re2_codigo: string;
   fecha_eliminado_aikon: string | null
+  fecha_inicializado: string | null
 
   articulo_precio: ArticuloPrecio;
   articulo_web: ArticuloWeb;
@@ -83,6 +84,7 @@ export class ArticuloAikon {
     this.aik_re1_codigo = data.aik_re1_codigo;
     this.aik_re2_codigo = data.aik_re2_codigo;
     this.fecha_eliminado_aikon = data.fecha_eliminado_aikon
+    this.fecha_inicializado = data.fecha_inicializado
 
     // Inicializar entidades de las options con Null si nos no la proveen.
     this.articulo_precio = opt.precioData ? new ArticuloPrecio(opt.precioData) : NullArticuloPrecio.getInstance()
