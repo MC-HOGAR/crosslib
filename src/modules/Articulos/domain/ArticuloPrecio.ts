@@ -12,7 +12,8 @@ export class ArticuloPrecio {
     arp_descuento?: Decimal; // Descuento (%)
     arp_descuento_fecha_hasta?: Date; // Fecha límite del descuento
     arp_precio_venta_iva?: Decimal; // Precio final de venta con IVA (calculado)
-    arp_porcentaje_off?: Decimal; // % OFF calculado basado en precio con IVA (calculado)
+    arp_porcentaje_off: Decimal; // % OFF calculado basado en precio con IVA (calculado)
+    arp_precio_web: Decimal;
   
     constructor(data: IArticuloPrecioData) {
       this.aik_ar_codigo = data.aik_ar_codigo;
@@ -22,6 +23,8 @@ export class ArticuloPrecio {
       this.arp_utilidad_ofer_stock_hasta = data.arp_utilidad_ofer_stock_hasta ?? undefined;
       this.arp_descuento = data.arp_descuento ? new Decimal(data.arp_descuento) : undefined;
       this.arp_descuento_fecha_hasta = data.arp_descuento_fecha_hasta ? new Date(data.arp_descuento_fecha_hasta) : undefined;
+      this.arp_porcentaje_off = new Decimal(data.arp_porcentaje_off)
+      this.arp_precio_web = new Decimal(data.arp_precio_web)
     }
   
     calcularPrecio(articulo: ArticuloAikon): void {

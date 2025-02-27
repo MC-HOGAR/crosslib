@@ -26,6 +26,7 @@ export interface IArticuloAikonData {
     aik_re2_codigo: string;
     fecha_eliminado_aikon: string | null
     fecha_inicializado: string | null
+    costo_subtotal: number
 };
 
 export interface IArticuloIncludingPrecioData extends IArticuloAikonData {
