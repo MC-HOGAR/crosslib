@@ -28,6 +28,11 @@ export enum InternalUserStatusEnum {
     Suspended = 'Suspended'
 }
 
+export enum UserTypeEnum {
+    Internal = 'Internal',
+    Storefront = 'Storefront'
+}
+
 export type InternalUserStatus = 'Active' | 'Suspended'
 
 export const InternalUserStatuses = ['Active', 'Suspended']
