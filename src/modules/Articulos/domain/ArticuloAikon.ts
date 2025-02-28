@@ -69,7 +69,7 @@ export class ArticuloAikon {
     this.aik_ap_precio_iva = new Decimal(data.aik_ap_precio_iva);
     this.aik_ar_publicarweb = data.aik_ar_publicarweb;
     this.aik_ar_descri = data.aik_ar_descri;
-    this.aik_ar_memo = data.aik_ar_memo;
+    this.aik_ar_memo = data.aik_ar_memo || '';
     this.aik_ar_alto = data.aik_ar_alto;
     this.aik_ar_ancho = data.aik_ar_ancho;
     this.aik_ar_profundo = data.aik_ar_profundo;

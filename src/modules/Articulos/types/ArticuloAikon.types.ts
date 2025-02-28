@@ -9,7 +9,7 @@ export interface IArticuloAikonData {
     aik_ap_precio_iva: string;
     aik_ar_publicarweb: string;
     aik_ar_descri: string;
-    aik_ar_memo: string;
+    aik_ar_memo?: string;
     aik_ar_alto: number;
     aik_ar_ancho: number;
     aik_ar_profundo: number;

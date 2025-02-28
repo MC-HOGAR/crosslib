@@ -4,8 +4,8 @@ import { IArticuloPrecioData } from '../types/ArticuloPrecio.types'
 const nullArticuloPrecioData: IArticuloPrecioData = {
     aik_ar_codigo: '-1',
     arp_utilidad_web: '0',
-    arp_porcentaje_off: 0,
-    arp_precio_web: 0
+    arp_porcentaje_off: '0',
+    arp_precio_web: '0'
 }
 
 // Clase que representa un objeto nulo de ArticuloPrecio. NullObjectPattern & Singleton. 
