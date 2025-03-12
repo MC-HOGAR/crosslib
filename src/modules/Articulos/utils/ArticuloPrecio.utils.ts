@@ -12,10 +12,16 @@ function calcularPorcentajeOff (precioAikon: Decimal, precioWeb: Decimal): Decim
     const porcentajeOff = diferencia.div(precioAikon).mul(100)
 
     if (porcentajeOff.lessThan(PORCENTAJE_DESCUENTO_VALOR_MINIMO_ACEPTADO)) return new Decimal(0);
-    return porcentajeOff
+    return porcentajeOff.toDecimalPlaces(2)
+}
+
+function calcularDescuento (precioBase: Decimal, porcentajeDescuento: Decimal) {
+    const descuento = precioBase.mul(porcentajeDescuento.div(100)); // Cálculo del descuento
+    return precioBase.sub(descuento); // Aplicar descuento al precio base
 }
 
 export {
     calcularPrecio,
-    calcularPorcentajeOff
+    calcularPorcentajeOff,
+    calcularDescuento
 }

@@ -15,4 +15,10 @@ export interface ArticuloAikonIncludingArticuloPrecio extends IArticuloAikonData
     articulo_precio: IArticuloPrecioData
 }
 
+export interface ArticuloAikonIncludingArticuloPrecioAndFamiliaAndMarca extends IArticuloAikonData {
+    articulo_precio: IArticuloPrecioData
+    aikon_familia: IFamiliaData
+    aikon_marca: IMarcaData
+}
+
 export type BodyHttpResponseArticuloAikonIncludingArticuloWebAndFamiliaAndMarca = IBodyHttpResponse<ArticuloAikonIncludingArticuloWebAndFamiliaAndMarca[]>
