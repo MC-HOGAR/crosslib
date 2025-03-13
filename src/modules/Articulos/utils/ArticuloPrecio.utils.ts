@@ -1,5 +1,7 @@
 import { Decimal } from 'decimal.js'
+import { getToday } from './../../../common/utils/DateUtils'
 
+const today = getToday()
 const PORCENTAJE_DESCUENTO_VALOR_MINIMO_ACEPTADO = 2
 
 function calcularPrecio (costo_subtotal: Decimal, utilidad: Decimal): Decimal {
@@ -20,23 +22,23 @@ function calcularDescuento (precioBase: Decimal, porcentajeDescuento: Decimal) {
     return precioBase.sub(descuento); // Aplicar descuento al precio base
 }
 
-interface ReglaNegocioInput {
+interface ArticuloPrecioInput {
     arp_utilidad_web: number;
     arp_utilidad_ofer: number | null;
-    arp_utilidad_ofer_fecha_hasta: string | null;
+    arp_utilidad_ofer_fecha_hasta: Date | string | null;
     arp_utilidad_ofer_stock_hasta: number | null;
     arp_descuento: number | null;
-    arp_descuento_fecha_hasta: string | null
-  }
+    arp_descuento_fecha_hasta: Date | string | null
+}
 
-function aplicarReglasDeNegocio ({
+function validarReglasNegocio ({
     arp_utilidad_web,
     arp_utilidad_ofer,
     arp_utilidad_ofer_fecha_hasta,
     arp_utilidad_ofer_stock_hasta,
     arp_descuento,
     arp_descuento_fecha_hasta
-}: ReglaNegocioInput) {
+}: ArticuloPrecioInput) {
     const errores: string[] = [];
     if (!arp_utilidad_ofer && (arp_utilidad_ofer_fecha_hasta || typeof(arp_utilidad_ofer_stock_hasta) === 'number')) {
         errores.push('Utilidad Oferta: Se debe aplicar un valor si se define una condición')
@@ -47,11 +49,36 @@ function aplicarReglasDeNegocio ({
     if (!arp_descuento && arp_descuento_fecha_hasta) {
         errores.push('Descuento: Se debe aplicar un valor si se aplica una condición')
     }
+    return errores
 }
+
+/* Determinar qué utilidad usar: UtilidadWeb || UtilidadOferta */
+function determinarUtilidad ({ arp_utilidad_web, arp_utilidad_ofer, arp_utilidad_ofer_fecha_hasta, arp_utilidad_ofer_stock_hasta }: ArticuloPrecioInput) {
+    let utilidad = arp_utilidad_web
+    if (arp_utilidad_ofer && (arp_utilidad_ofer_fecha_hasta || typeof(arp_utilidad_ofer_stock_hasta) === 'number')) {
+        utilidad = arp_utilidad_ofer
+    }
+    return utilidad
+}
+/* Determinar si se aplica descuento o no */
+function aplicarDescuento (precioWebBase: Decimal, { arp_descuento, arp_descuento_fecha_hasta }: ArticuloPrecioInput) {
+    if (arp_descuento && arp_descuento_fecha_hasta && arp_descuento_fecha_hasta >= today) {
+        precioWebBase = calcularDescuento(precioWebBase, new Decimal(arp_descuento))
+    }
+    return precioWebBase
+}
+function calcularPrecioWeb(input: ArticuloPrecioInput, costo_subtotal: Decimal) {
+    const utilidad = new Decimal(determinarUtilidad(input))
+    let precioWebBase = calcularPrecio(costo_subtotal, utilidad)
+    precioWebBase = aplicarDescuento(precioWebBase, input)
+    return precioWebBase
+}
+
 
 export {
     calcularPrecio,
     calcularPorcentajeOff,
     calcularDescuento,
-    aplicarReglasDeNegocio
+    validarReglasNegocio,
+    calcularPrecioWeb
 }
