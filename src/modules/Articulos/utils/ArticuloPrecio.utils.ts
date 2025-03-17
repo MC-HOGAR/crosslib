@@ -62,6 +62,8 @@ function determinarUtilidad ({ arp_utilidad_web, arp_utilidad_ofer, arp_utilidad
 }
 /* Determinar si se aplica descuento o no */
 function aplicarDescuento (precioWebBase: Decimal, { arp_descuento, arp_descuento_fecha_hasta }: ArticuloPrecioInput) {
+    let fecha_hasta = arp_descuento_fecha_hasta
+    if (typeof(fecha_hasta) === 'string') { fecha_hasta = new Date(fecha_hasta) }
     if (arp_descuento && arp_descuento_fecha_hasta && arp_descuento_fecha_hasta >= today) {
         precioWebBase = calcularDescuento(precioWebBase, new Decimal(arp_descuento))
     }
