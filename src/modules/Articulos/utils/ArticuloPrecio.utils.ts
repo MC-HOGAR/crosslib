@@ -67,11 +67,15 @@ function aplicarDescuento (precioWebBase: Decimal, { arp_descuento, arp_descuent
     }
     return precioWebBase
 }
+
+/* 
+* Calculamos el precio web final
+*/
 function calcularPrecioWeb(input: ArticuloPrecioInput, costo_subtotal: Decimal) {
     const utilidad = new Decimal(determinarUtilidad(input))
-    let precioWebBase = calcularPrecio(costo_subtotal, utilidad)
-    precioWebBase = aplicarDescuento(precioWebBase, input)
-    return precioWebBase
+    const precioWebBase = calcularPrecio(costo_subtotal, utilidad)
+    const precioWeb = aplicarDescuento(precioWebBase, input)
+    return precioWeb
 }
 
 
