@@ -17,12 +17,19 @@ const TipoProcesoSincronizacionArticuloInfoRelevante: TipoProcesoInfo = {
     nombre: 'ProcesoSincronizacionArticuloInfoRelevante',
     descripcion: `Se sincronizan los atributos escenciales del artículo para mostrar en el ecommerce.`
 }
-export type IDS_TIPO_PROCESOS = 1 | 2
-export type NOMBRES_TIPO_PROCESOS = 'ProcesoSincronizacionConAikonCompleto' | 'ProcesoSincronizacionArticuloInfoRelevante'
+
+const TipoProcesoRecalcularPrecios: TipoProcesoInfo = {
+    id: 3,
+    nombre: 'ProcesoRecalcularPrecios',
+    descripcion: `Se sincronizan los atributos escenciales del artículo para mostrar en el ecommerce.`
+}
+export type IDS_TIPO_PROCESOS = 1 | 2 | 3
+export type NOMBRES_TIPO_PROCESOS = 'ProcesoSincronizacionConAikonCompleto' | 'ProcesoSincronizacionArticuloInfoRelevante' | 'ProcesoRecalcularPrecios'
 export type SYSTEM_PROCESS_STATE_ALLOWED_VALUES = 'EXECUTING' | 'NOT_EXECUTING';
 
 Object.freeze(TipoProcesoProcesoSincronizacionConAikonCompleto)
 Object.freeze(TipoProcesoSincronizacionArticuloInfoRelevante)
+Object.freeze(TipoProcesoRecalcularPrecios)
 
 // Step names ProcesoInfo (se usan al iniciar y finalizar el proceso)
 enum StepNameProcesoInfoInicioFin {
@@ -52,7 +59,14 @@ enum StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante {
     EjecutarSincronizacionArticulosInfoRelevante = "EjecutarSincronizacionArticulosInfoRelevante"
 }
 
-export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto | StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoInicioFin
+// Step Names ProcesoRecalcularPrecios
+enum StepNameProcesoInfoDetalleProcesoRecalcularPrecios {
+    ObtenerArticuloPrecioConARticulo = "ObtenerArticuloPrecioConArticulo",
+    HacerRecalculosYPrepararUpdate = "HacerRecalculosYPrepararUpdate",
+    EjecutarUpdateParaCadaArticuloPrecio = "EjecutarUpdateParaCadaArticuloPrecio"
+}
+
+export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto | StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoDetalleProcesoRecalcularPrecios |StepNameProcesoInfoInicioFin
 
 enum EstadoEjecucion {
     Procesando = "Procesando",
@@ -62,8 +76,10 @@ enum EstadoEjecucion {
 export {
     TipoProcesoProcesoSincronizacionConAikonCompleto,
     TipoProcesoSincronizacionArticuloInfoRelevante,
+    TipoProcesoRecalcularPrecios,
     StepNameProcesoInfoDetalleSincronizacionConAikonCompleto,
     StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante,
+    StepNameProcesoInfoDetalleProcesoRecalcularPrecios,
     StepNameProcesoInfoInicioFin,
     EstadoEjecucion
 }

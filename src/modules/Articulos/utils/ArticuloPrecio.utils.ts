@@ -22,7 +22,7 @@ function calcularDescuento (precioBase: Decimal, porcentajeDescuento: Decimal) {
     return precioBase.sub(descuento); // Aplicar descuento al precio base
 }
 
-interface ArticuloPrecioInput {
+export interface ArticuloPrecioInput {
     arp_utilidad_web: number;
     arp_utilidad_ofer: number | null;
     arp_utilidad_ofer_fecha_hasta: Date | string | null;
@@ -64,7 +64,7 @@ function determinarUtilidad ({ arp_utilidad_web, arp_utilidad_ofer, arp_utilidad
 function aplicarDescuento (precioWebBase: Decimal, { arp_descuento, arp_descuento_fecha_hasta }: ArticuloPrecioInput) {
     let fecha_hasta = arp_descuento_fecha_hasta
     if (typeof(fecha_hasta) === 'string') { fecha_hasta = new Date(fecha_hasta) }
-    if (arp_descuento && arp_descuento_fecha_hasta && arp_descuento_fecha_hasta >= today) {
+    if (arp_descuento && fecha_hasta && fecha_hasta >= today) {
         precioWebBase = calcularDescuento(precioWebBase, new Decimal(arp_descuento))
     }
     return precioWebBase
