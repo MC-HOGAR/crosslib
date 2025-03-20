@@ -61,12 +61,12 @@ enum StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante {
 
 // Step Names ProcesoRecalcularPrecios
 enum StepNameProcesoInfoDetalleProcesoRecalcularPrecios {
-    ObtenerArticuloPrecioConARticulo = "ObtenerArticuloPrecioConArticulo",
-    HacerRecalculosYPrepararUpdate = "HacerRecalculosYPrepararUpdate",
-    EjecutarUpdateParaCadaArticuloPrecio = "EjecutarUpdateParaCadaArticuloPrecio"
+    ObtenerArticuloPrecioConArticulo = "ObtenerArticuloPrecioConArticulo",
+    HacerRecalculosYPrepararUpdate = "HacerRecalculosYPrepararUpdates",
+    EjecutarUpdates = "EjecutarUpdates"
 }
 
-export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto | StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoDetalleProcesoRecalcularPrecios |StepNameProcesoInfoInicioFin
+export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto | StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoDetalleProcesoRecalcularPrecios | StepNameProcesoInfoInicioFin
 
 enum EstadoEjecucion {
     Procesando = "Procesando",
