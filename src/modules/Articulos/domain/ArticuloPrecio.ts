@@ -14,6 +14,7 @@ export class ArticuloPrecio {
     arp_precio_venta_iva?: Decimal; // Precio final de venta con IVA (calculado)
     arp_porcentaje_off: Decimal; // % OFF calculado basado en precio con IVA (calculado)
     arp_precio_web: Decimal;
+    arp_precio_web_sin_impuestos: Decimal;
   
     constructor(data: IArticuloPrecioData) {
       this.aik_ar_codigo = data.aik_ar_codigo;
@@ -25,9 +26,12 @@ export class ArticuloPrecio {
       this.arp_descuento_fecha_hasta = data.arp_descuento_fecha_hasta ? new Date(data.arp_descuento_fecha_hasta) : undefined;
       this.arp_porcentaje_off = new Decimal(data.arp_porcentaje_off)
       this.arp_precio_web = new Decimal(data.arp_precio_web)
+      this.arp_precio_web_sin_impuestos = new Decimal(data.arp_precio_web_sin_impuestos)
     }
   
-    calcularPrecio(articulo: ArticuloAikon): void {
+
+    // TODO, ESTOS MÉTODOS SE DEBEN ELIMINAR. ESTAMOS USANDO LAS UTILS.
+    /*calcularPrecio(articulo: ArticuloAikon): void {
       let margen_efectivo = this.arp_utilidad_web;
   
       // Verificar si se aplica la oferta
@@ -66,9 +70,9 @@ export class ArticuloPrecio {
       } else {
         this.arp_porcentaje_off = new Decimal(0);
       }
-    }
+    }*/
   
-    actualizarUtilidadWeb(nueva_utilidad_web: string): void {
+    /*actualizarUtilidadWeb(nueva_utilidad_web: string): void {
       this.arp_utilidad_web = new Decimal(nueva_utilidad_web);
     }
   
@@ -90,5 +94,5 @@ export class ArticuloPrecio {
     }
     calcularPrecioConMarkupAikon(articulo: ArticuloAikon): Decimal {
       return this.calcularPrecioBase(articulo).mul(articulo.aik_ap_utilidad.div(100).plus(1))
-    }
+    }*/
 }

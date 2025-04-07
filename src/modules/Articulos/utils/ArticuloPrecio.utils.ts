@@ -80,11 +80,17 @@ function calcularPrecioWeb(input: ArticuloPrecioInput, costo_subtotal: Decimal) 
     return precioWeb
 }
 
+function calcularPrecioSinImpuestos (input: ArticuloPrecioInput, aik_ar_cosnet: Decimal) {
+    const utilidad = new Decimal(determinarUtilidad(input))
+    return aik_ar_cosnet.mul( utilidad.div(100).plus(1) )
+}
+
 
 export {
     calcularPrecio,
     calcularPorcentajeOff,
     calcularDescuento,
     validarReglasNegocio,
-    calcularPrecioWeb
+    calcularPrecioWeb,
+    calcularPrecioSinImpuestos
 }

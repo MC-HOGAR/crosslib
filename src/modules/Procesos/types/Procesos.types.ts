@@ -21,7 +21,7 @@ const TipoProcesoSincronizacionArticuloInfoRelevante: TipoProcesoInfo = {
 const TipoProcesoRecalcularPrecios: TipoProcesoInfo = {
     id: 3,
     nombre: 'ProcesoRecalcularPrecios',
-    descripcion: `Se sincronizan los atributos escenciales del artículo para mostrar en el ecommerce.`
+    descripcion: `Se recalculan los precios de los artículos.`
 }
 export type IDS_TIPO_PROCESOS = 1 | 2 | 3
 export type NOMBRES_TIPO_PROCESOS = 'ProcesoSincronizacionConAikonCompleto' | 'ProcesoSincronizacionArticuloInfoRelevante' | 'ProcesoRecalcularPrecios'

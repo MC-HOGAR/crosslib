@@ -9,7 +9,8 @@ export class ArticuloWeb {
     ar_slug: string
     ar_galeria: IImageBucketFile[]
     updated_at: string | null
-    
+    ar_activo: boolean
+
     constructor (data: IArticuloWebData) {
         this.aik_ar_codigo = data.aik_ar_codigo
         this.ar_img_principal = data.ar_img_principal
@@ -18,5 +19,6 @@ export class ArticuloWeb {
         this.ar_slug = data.ar_slug
         this.ar_galeria = data.ar_galeria
         this.updated_at = data.updated_at
+        this.ar_activo = data.ar_activo
     }
 }

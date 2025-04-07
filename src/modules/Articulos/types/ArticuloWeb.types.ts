@@ -8,6 +8,7 @@ export interface IArticuloWebData {
     ar_slug: string
     ar_galeria: IImageBucketFile[]
     updated_at: string | null
+    ar_activo: boolean
 }
 
 export const ARTICULO_WEB_IMAGE_METADATA = {
