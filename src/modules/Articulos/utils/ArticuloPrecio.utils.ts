@@ -82,7 +82,9 @@ function calcularPrecioWeb(input: ArticuloPrecioInput, costo_subtotal: Decimal) 
 
 function calcularPrecioSinImpuestos (input: ArticuloPrecioInput, aik_ar_cosnet: Decimal) {
     const utilidad = new Decimal(determinarUtilidad(input))
-    return aik_ar_cosnet.mul( utilidad.div(100).plus(1) )
+    const precioWebBaseSinImpuestos = calcularPrecio(aik_ar_cosnet, utilidad)
+    const precioWebSinImpuestos = aplicarDescuento(precioWebBaseSinImpuestos, input)
+    return precioWebSinImpuestos
 }
 
 
