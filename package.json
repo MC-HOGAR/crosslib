@@ -1,6 +1,6 @@
 {
   "name": "@mc-hogar/crosslib",
-  "version": "0.0.51",
+  "version": "0.0.54",
   "description": "Cross-platform TypeScript library",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -17,7 +17,7 @@
     "lint:fix": "eslint 'src/**/*.ts' --fix",
     "format": "prettier --write 'src/**/*.ts'",
     "prepare": "pnpm build",
-    "publish": "npm publish"
+    "publish2": "npm publish"
   },
   "keywords": [],
   "author": "Lucas Ferrero <lucasdavidferrero@gmail.com>",

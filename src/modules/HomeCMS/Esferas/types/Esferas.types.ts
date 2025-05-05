@@ -3,3 +3,7 @@ export interface Esfera {
     link: string
     title: string
 }
+
+export interface EsferaConId extends Esfera {
+    id: string
+}
