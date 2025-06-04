@@ -16,7 +16,7 @@ export interface IImage {
 }
 
 export interface IBucketFile {
-    object_key: string // The full path or key of the object in the bucket
+    object_key: string // The full path or key of the object in the bucket...
 }
 
 export interface IImageBucketFile extends IBucketFile {}
