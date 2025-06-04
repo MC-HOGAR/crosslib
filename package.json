@@ -1,6 +1,6 @@
 {
   "name": "@mc-hogar/crosslib",
-  "version": "0.0.66",
+  "version": "0.0.68",
   "description": "Cross-platform TypeScript library",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -50,7 +50,7 @@
     "zod": "^3.24.1"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "exports": {
     ".": {
