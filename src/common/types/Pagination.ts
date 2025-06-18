@@ -1,7 +1,5 @@
-/*export interface IListadoPaginado {
-    cursorId?:                   string | null
-    cantidadItemsPagina?:        number
-}*/
+export type ArticuloOrderByStr = 'aik_ar_fecha_alta' | 'aik_ar_codigo'
+export type OrderByDescAsc = 'desc' | 'asc'
 
 export interface IOffsetPagination {
     skip: number | null
@@ -28,5 +26,7 @@ export interface IFiltrosArticulosPaginadoTier1 {
 export interface IListadoPaginadoArticuloOptions {
     paginationOptions: IOffsetPagination
     filterOptions: IFiltrosArticulosPaginadoTier1
+    orderByField: ArticuloOrderByStr
+    orderByDescAsc: OrderByDescAsc
 }
 
