@@ -10,6 +10,8 @@ export interface BloqueListado {
     fechaActualizacion: string;
 }
 
+export type BloqueListadoSinFechas = Omit<BloqueListado, 'fechaCreacion' | 'fechaActualizacion'>
+
 export interface ItemBloqueListado {
     id: number;
     bloqueId: number;
