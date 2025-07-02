@@ -1,4 +1,4 @@
-export type ArticuloOrderByStr = 'aik_ar_fecha_alta' | 'aik_ar_codigo'
+export type ArticuloOrderByStr = 'aik_ar_codigo' | 'aik_ar_fecha_alta' | 'aik_ar_fechamodif' | 'aik_stock_total' | 'aik_ap_utilidad'
 export type OrderByDescAsc = 'desc' | 'asc'
 
 export interface IOffsetPagination {
