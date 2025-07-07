@@ -6,7 +6,6 @@ export enum OrderDirection {
   DESC = 'desc',
 }
 
-
 export interface IOffsetPagination {
     skip: number | null
     take: number | null
