@@ -16,12 +16,12 @@ export interface IImage {
 }
 
 export interface IBucketFile {
-    object_key: string // The full path or key of the object in the bucket...._ Otro mma...
+    object_key: string // The full path or key of the object in the bucket...
 }
 
 export interface IImageBucketFile extends IBucketFile {}
 
-export interface ProgressiveImage { // Used for progressive image loading.
+export interface ProgressiveImage { // Used for progressive image loading...
     full: IImageBucketFile
     placeholder: IImageBucketFile
 }
