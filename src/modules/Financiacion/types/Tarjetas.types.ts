@@ -1,9 +1,10 @@
 export interface Tarjeta {
     id: number
     nombre: string
+    nombreWeb: string
+    orden: number
     codigo_tarjeta: string | null
     tipo_tarjeta: TipoTarjeta
-    orden: number
     logoUrl: string | null
     comentarios: string | null
     activo: boolean
