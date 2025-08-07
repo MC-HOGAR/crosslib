@@ -13,7 +13,7 @@ export interface MedioPago {
 }
 
 export enum TipoMedioPago {
-  TARJETA = "TARJETA",
+  CREDITO_DEBITO = "CREDITO_DEBITO",
   TRANSFERENCIA = "TRANSFERENCIA",
   EFECTIVO = "EFECTIVO",
   CREDITO_PERSONAL = "CREDITO_PERSONAL"
