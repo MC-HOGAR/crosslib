@@ -1,6 +1,6 @@
-export interface MedioPago {
+export interface ServicioPago {
     id: number
-    tipo_medio: TipoMedioPago
+    tipo_servicio: TipoServicioPago
     nombre: string
     nombreWeb: string
     orden: number | null
@@ -12,9 +12,10 @@ export interface MedioPago {
     updated_at: string
 }
 
-export enum TipoMedioPago {
-  CREDITO_DEBITO = "CREDITO_DEBITO",
+export enum TipoServicioPago {
+  CREDITO_DEBITO_FISERV = "CREDITO_DEBITO_FISERV",
   TRANSFERENCIA = "TRANSFERENCIA",
   EFECTIVO = "EFECTIVO",
-  CREDITO_PERSONAL = "CREDITO_PERSONAL"
+  CREDITO_PERSONAL = "CREDITO_PERSONAL",
+  BILLETERA_MERCADO_PAGO = "BILLETERA_MERCADO_PAGO"
 }

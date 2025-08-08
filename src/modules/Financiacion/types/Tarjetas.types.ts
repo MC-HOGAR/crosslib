@@ -3,7 +3,6 @@ export interface Tarjeta {
     nombre: string
     nombreWeb: string
     orden: number
-    codigo_tarjeta: string | null
     tipo_tarjeta: TipoTarjeta
     logoUrl: string | null
     comentarios: string | null
