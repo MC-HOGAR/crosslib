@@ -1,6 +1,6 @@
 {
   "name": "@mc-hogar/crosslib",
-  "version": "1.0.16",
+  "version": "1.0.18",
   "description": "Cross-platform TypeScript library",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

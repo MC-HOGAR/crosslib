@@ -27,3 +27,9 @@ export type PlanPagoIncludingTarjeta = PlanPago & { finan_tarjeta: Tarjeta }
 export type PlanPagoIncludingBanco = PlanPago & { finan_banco: Banco }
 
 export type PlanPagoIncludingAll = PlanPagoIncludingServicioPago & PlanPagoIncludingTarjeta & PlanPagoIncludingBanco
+
+export enum EstadoPlanFiltro {
+  ACTIVOS = 'activos',
+  INACTIVOS = 'inactivos',
+  AMBOS = 'ambos',
+}

@@ -1,2 +1,5 @@
 export * from './Tarjetas.types'
 export * from './ServicioPagos.types'
+export * from './Bancos.types'
+export * from './NroComercio.types'
+export * from './PlanPago.types'
