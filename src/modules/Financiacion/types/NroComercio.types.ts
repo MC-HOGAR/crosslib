@@ -4,8 +4,8 @@ export interface NroComercio {
     servicio_pago_id: number;
     nro_comercio: string;
     banco_id: number;
-    created_at: Date;
-    updated_at: Date;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface SelectEntidad {
