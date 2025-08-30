@@ -87,6 +87,22 @@ function calcularPrecioSinImpuestos (input: ArticuloPrecioInput, aik_ar_cosnet: 
     return precioWebSinImpuestos
 }
 
+/** Dado un precio con IVA, devuelve el precio sin IVA. */
+function calcularPrecioSinImpuestosV2 (precioWeb: Decimal.Value, aik_iva_porcen: Decimal.Value) {
+    const precio = new Decimal(precioWeb);
+    const coeficiente = porcentajeToCoeficienteMultiplicador(aik_iva_porcen); // 21 → 1.21, 30 → 1.30
+
+    if (!coeficiente.isFinite() || coeficiente.lte(0)) throw new Error('IVA inválido');
+
+    const base = precio.div(coeficiente);
+
+    return base.toDecimalPlaces(2);
+}
+
+/** Convierte 30 → 1.30, 21 → 1.21, etc. */
+export function porcentajeToCoeficienteMultiplicador(porcentaje: Decimal.Value): Decimal {
+  return new Decimal(1).plus(new Decimal(porcentaje).div(100));
+}
 
 export {
     calcularPrecio,

@@ -1,6 +1,7 @@
 export interface GlobalConfig {
     logos: Logos
 }
+
 interface Logos {
     brandHeaderKey: string
     brandFooterKey: string
