@@ -1,6 +1,7 @@
 import { ServicioPago } from './ServicioPagos.types'
 import { Tarjeta } from './Tarjetas.types'
 import { Banco } from './Bancos.types'
+import { NroComercio } from './NroComercio.types'
 
 export interface PlanPago {
     id: number;
@@ -18,6 +19,7 @@ export interface PlanPago {
     servicio_pago_id: number;
     tarjeta_id: number;
     banco_id: number;
+    nro_comercio_id: number;
 }
 
 export type PlanPagoIncludingServicioPago = PlanPago & { finan_servicio_pago: ServicioPago } 
@@ -26,7 +28,9 @@ export type PlanPagoIncludingTarjeta = PlanPago & { finan_tarjeta: Tarjeta }
 
 export type PlanPagoIncludingBanco = PlanPago & { finan_banco: Banco }
 
-export type PlanPagoIncludingAll = PlanPagoIncludingServicioPago & PlanPagoIncludingTarjeta & PlanPagoIncludingBanco
+export type PlanPagoIncludingNroComercio = PlanPago & { finan_nro_comercio: NroComercio }
+
+export type PlanPagoIncludingAll = PlanPagoIncludingServicioPago & PlanPagoIncludingTarjeta & PlanPagoIncludingBanco & PlanPagoIncludingNroComercio
 
 export enum EstadoPlanFiltro {
   ACTIVOS = 'activos',

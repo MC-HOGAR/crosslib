@@ -110,5 +110,6 @@ export {
     calcularDescuento,
     validarReglasNegocio,
     calcularPrecioWeb,
-    calcularPrecioSinImpuestos
+    calcularPrecioSinImpuestos,
+    calcularPrecioSinImpuestosV2
 }
