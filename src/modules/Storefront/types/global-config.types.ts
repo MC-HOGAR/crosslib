@@ -1,11 +1,16 @@
 export interface GlobalConfig {
     logos: Logos
+    bannerFooter: BannerFooter
 }
 
 interface Logos {
     brandHeaderKey: string
     brandFooterKey: string
-    footerBannerEnviosKey: string
+}
+
+interface BannerFooter {
+    imageLink: string
+    linkTo?: string
 }
 
 export interface GlobalConfigSocialNetwork {
