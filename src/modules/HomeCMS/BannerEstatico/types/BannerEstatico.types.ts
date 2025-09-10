@@ -16,7 +16,6 @@ export const BannerEstaticoFileValidations = Object.freeze({
     IMG_MOBILE_HEIGHT: 150,
     IMG_MOBILE_RESOLUTION: '800x150px',
     IMG_DESKTOP_WIDTH: 1920,
-    IMG_DESKTOP_HEIGHT: 95,
-    IMG_DESKTOP_RESOLUTION: '1920px95px',
-    //VALID_IMAGE_TYPES: ['jpg','jpeg', 'png', 'webp', 'avif']
+    IMG_DESKTOP_HEIGHT: 80,
+    IMG_DESKTOP_RESOLUTION: '1920px80px',
 })

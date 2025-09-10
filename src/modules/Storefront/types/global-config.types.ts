@@ -5,6 +5,7 @@ export interface GlobalConfig {
 interface Logos {
     brandHeaderKey: string
     brandFooterKey: string
+    footerBannerEnviosKey: string
 }
 
 export interface GlobalConfigSocialNetwork {
