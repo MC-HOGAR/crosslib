@@ -9,7 +9,7 @@ interface Logos {
 }
 
 interface BannerFooter {
-    imageLink: string
+    imageKey: string
     linkTo?: string
 }
 
