@@ -10,6 +10,7 @@ export interface IArticuloPrecioData {
     arp_porcentaje_off: string;
     arp_precio_web: string;
     arp_precio_web_sin_impuestos: string;
+    arp_descuento_contado: string;
 }
 
 export const LP_CODIGO_PRECIO_VENTA_PUBLICO = '01';
