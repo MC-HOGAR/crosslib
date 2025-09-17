@@ -107,13 +107,12 @@ export function porcentajeToCoeficienteMultiplicador(porcentaje: Decimal.Value):
 }
 
 /* Calcular Precio Contado. */
-export function calcularPrecioContado (aik_ap_precio_iva: Decimal.Value, arp_descuento_contado: Decimal.Value) {
+function calcularPrecioContado (aik_ap_precio_iva: Decimal.Value, arp_descuento_contado: Decimal.Value) {
     const precioAikon = new Decimal(aik_ap_precio_iva)
     const descuentoContado = new Decimal(arp_descuento_contado)
     const montoDescuento = precioAikon.mul( descuentoContado.div(100) )
     return precioAikon.minus(montoDescuento)
 }
-
 
 export {
     calcularPrecio,
@@ -122,5 +121,6 @@ export {
     validarReglasNegocio,
     calcularPrecioWeb,
     calcularPrecioSinImpuestos,
-    calcularPrecioSinImpuestosV2
+    calcularPrecioSinImpuestosV2,
+    calcularPrecioContado
 }
