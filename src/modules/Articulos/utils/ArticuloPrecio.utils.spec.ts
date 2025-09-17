@@ -16,7 +16,8 @@ const mockArticuloInput01 = {
         arp_utilidad_ofer_fecha_hasta: null,
         arp_utilidad_ofer_stock_hasta: null,
         arp_descuento: null,
-        arp_descuento_fecha_hasta: null
+        arp_descuento_fecha_hasta: null,
+        arp_descuento_contado: null
     }
 }
 

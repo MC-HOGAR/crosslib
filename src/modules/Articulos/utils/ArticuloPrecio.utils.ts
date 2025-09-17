@@ -29,6 +29,7 @@ export interface ArticuloPrecioInput {
     arp_utilidad_ofer_stock_hasta: number | null;
     arp_descuento: number | null;
     arp_descuento_fecha_hasta: Date | string | null
+    arp_descuento_contado: number | null
 }
 
 function validarReglasNegocio ({
@@ -37,7 +38,7 @@ function validarReglasNegocio ({
     arp_utilidad_ofer_fecha_hasta,
     arp_utilidad_ofer_stock_hasta,
     arp_descuento,
-    arp_descuento_fecha_hasta
+    arp_descuento_fecha_hasta,
 }: ArticuloPrecioInput) {
     const errores: string[] = [];
     if (!arp_utilidad_ofer && (arp_utilidad_ofer_fecha_hasta || typeof(arp_utilidad_ofer_stock_hasta) === 'number')) {
@@ -49,6 +50,7 @@ function validarReglasNegocio ({
     if (!arp_descuento && arp_descuento_fecha_hasta) {
         errores.push('Descuento: Se debe aplicar un valor si se aplica una condición')
     }
+
     return errores
 }
 
@@ -103,6 +105,15 @@ function calcularPrecioSinImpuestosV2 (precioWeb: Decimal.Value, aik_iva_porcen:
 export function porcentajeToCoeficienteMultiplicador(porcentaje: Decimal.Value): Decimal {
   return new Decimal(1).plus(new Decimal(porcentaje).div(100));
 }
+
+/* Calcular Precio Contado. */
+export function calcularPrecioContado (aik_ap_precio_iva: Decimal.Value, arp_descuento_contado: Decimal.Value) {
+    const precioAikon = new Decimal(aik_ap_precio_iva)
+    const descuentoContado = new Decimal(arp_descuento_contado)
+    const montoDescuento = precioAikon.mul( descuentoContado.div(100) )
+    return precioAikon.minus(montoDescuento)
+}
+
 
 export {
     calcularPrecio,

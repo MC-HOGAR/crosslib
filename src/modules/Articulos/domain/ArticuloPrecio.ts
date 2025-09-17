@@ -15,6 +15,7 @@ export class ArticuloPrecio {
     arp_porcentaje_off: Decimal; // % OFF calculado basado en precio con IVA (calculado)
     arp_precio_web: Decimal;
     arp_precio_web_sin_impuestos: Decimal;
+    arp_descuento_contado: Decimal;
   
     constructor(data: IArticuloPrecioData) {
       this.aik_ar_codigo = data.aik_ar_codigo;
@@ -27,6 +28,7 @@ export class ArticuloPrecio {
       this.arp_porcentaje_off = new Decimal(data.arp_porcentaje_off)
       this.arp_precio_web = new Decimal(data.arp_precio_web)
       this.arp_precio_web_sin_impuestos = new Decimal(data.arp_precio_web_sin_impuestos)
+      this.arp_descuento_contado = new Decimal(data.arp_descuento_contado)
     }
 
 }
