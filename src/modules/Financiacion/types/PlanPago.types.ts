@@ -11,6 +11,7 @@ export interface PlanPago {
     coeficiente_recargo_descuento: string;
     porcentaje_reintegro: string | null;
     activo: boolean;
+    mostrar_en_calculadora: boolean;
     badge_img_url: string | null;
     fecha_desde_valido: string | null;
     fecha_hasta_valido: string | null;
