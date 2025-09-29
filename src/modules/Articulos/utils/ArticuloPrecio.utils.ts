@@ -114,6 +114,12 @@ function calcularPrecioContado (aik_ap_precio_iva: Decimal.Value, arp_descuento_
     return precioAikon.minus(montoDescuento)
 }
 
+export function calcularOffRedondeado(off: Decimal.Value): number {
+  const valor = new Decimal(off);
+  // Redondear a 0 decimales, estándar (0.5 va para arriba)
+  return valor.toDecimalPlaces(0, Decimal.ROUND_HALF_UP).toNumber();
+}
+
 export {
     calcularPrecio,
     calcularPorcentajeOff,
@@ -122,5 +128,5 @@ export {
     calcularPrecioWeb,
     calcularPrecioSinImpuestos,
     calcularPrecioSinImpuestosV2,
-    calcularPrecioContado
+    calcularPrecioContado,
 }

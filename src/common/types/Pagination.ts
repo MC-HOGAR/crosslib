@@ -20,6 +20,7 @@ export interface IFiltrosArticulosPaginadoTier1 {
     codigosMarca?:          string[]
     codigosFamilia?:        string[]
     codigosEstadoArticulo?: string[]
+    activoWeb?:             string
     codArticulo?:           string
 }
 

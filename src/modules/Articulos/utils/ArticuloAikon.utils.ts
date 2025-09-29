@@ -10,7 +10,14 @@ function calcularCostoSubtotal(costo_neto: Decimal, iva_porcentaje: Decimal, imp
     return costo_neto.plus(costoIVA).plus(costoImpuestoInterno)
 }
 
+function displayTextEstadoArticulo(estadoArticulo: string) {
+    if (estadoArticulo === '01') return 'DISPONIBLE;'
+    if (estadoArticulo === '02') return 'ACTIVO';
+    if (estadoArticulo === '03') return 'INACTIVO';
+    return 'N/A'
+}
 
 export {
-    calcularCostoSubtotal
+    calcularCostoSubtotal,
+    displayTextEstadoArticulo
 }
