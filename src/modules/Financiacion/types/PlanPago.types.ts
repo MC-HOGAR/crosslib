@@ -2,6 +2,7 @@ import { ServicioPago } from './ServicioPagos.types'
 import { Tarjeta } from './Tarjetas.types'
 import { Banco } from './Bancos.types'
 import { NroComercio } from './NroComercio.types'
+import Decimal from 'decimal.js'
 
 export interface PlanPago {
     id: number;
@@ -37,4 +38,24 @@ export enum EstadoPlanFiltro {
   ACTIVOS = 'activos',
   INACTIVOS = 'inactivos',
   AMBOS = 'ambos',
+}
+
+export interface PlanPagoPrisma {
+  updated_at: Date;
+  id: number;
+  comentariosWeb: string | null;
+  comentarios: string | null;
+  cantidad_cuotas: number;
+  coeficiente_recargo_descuento: Decimal;
+  porcentaje_reintegro: Decimal | null;
+  activo: boolean;
+  mostrar_en_calculadora: boolean;
+  badge_img_url: string | null;
+  fecha_desde_valido: Date | null;
+  fecha_hasta_valido: Date | null;
+  created_at: Date;
+  servicio_pago_id: number;
+  tarjeta_id: number;
+  banco_id: number;
+  nro_comercio_id: number | null;
 }

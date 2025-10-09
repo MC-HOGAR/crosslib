@@ -1,4 +1,4 @@
-import { PlanPago } from '@/modules/Financiacion/types/PlanPago.types'
+import type { PlanPago } from '@/modules/Financiacion/types/PlanPago.types'
 
 export interface ArticuloIndexObject {
   aik_ar_codigo: string

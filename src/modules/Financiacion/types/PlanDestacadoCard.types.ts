@@ -1,4 +1,16 @@
-import type { PlanPago } from './PlanPago.types'
+import type { PlanPago, PlanPagoPrisma } from './PlanPago.types'
+
+export interface PlanDestacadoCardPrisma {
+    aik_ar_codigo: string;
+    plan_de_pago_id: number | null;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface PlanDestacadoCardPrismaIncludingPlanDePagoPrisma extends PlanDestacadoCardPrisma{
+    finan_plan_de_pago: PlanPagoPrisma | null
+}
+
 export interface PlanDestacadoCard {
     aik_ar_codigo: string;
     plan_de_pago_id: number | null;
@@ -7,5 +19,5 @@ export interface PlanDestacadoCard {
 }
 
 export interface PlanDestacadoCardIncludingPlanDePago extends PlanDestacadoCard{
-    finan_plan_de_pago: PlanPago
+    finan_plan_de_pago: PlanPago | null
 }
