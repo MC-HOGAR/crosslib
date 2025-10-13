@@ -1,4 +1,3 @@
-import type { PlanPago } from '@/modules/Financiacion/types/PlanPago.types'
 
 export interface ArticuloIndexObject {
   aik_ar_codigo: string
@@ -23,5 +22,23 @@ export interface ArticuloIndexObject {
   off_facet: string
   nuevoIngreso: boolean,
   objectID: string,
-  plan: PlanPago | null
+  plan: {
+    id: number;
+    comentariosWeb: string | null;
+    comentarios: string | null;
+    cantidad_cuotas: number;
+    coeficiente_recargo_descuento: string;
+    porcentaje_reintegro: string | null;
+    activo: boolean;
+    mostrar_en_calculadora: boolean;
+    badge_img_url: string | null;
+    fecha_desde_valido: string | null;
+    fecha_hasta_valido: string | null;
+    created_at: string;
+    updated_at: string;
+    servicio_pago_id: number;
+    tarjeta_id: number;
+    banco_id: number;
+    nro_comercio_id: number;
+  } | null
 }
