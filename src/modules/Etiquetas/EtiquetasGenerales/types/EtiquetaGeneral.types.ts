@@ -16,4 +16,4 @@ export type EtiquetaGeneralCrearDto = Pick<EtiquetaGeneral, 'nombre' | 'nombreWe
 
 export type EtiquetaGeneralActualizarDto = Pick<EtiquetaGeneral, 'nombre' | 'nombreWeb' | 'comentarios' | 'activo' | 'fecha_desde_valido' | 'fecha_hasta_valido'>
 
-export type EtiquetaGeneralCrearActualizarFormState = Pick<EtiquetaGeneral, 'nombre' | 'nombreWeb' | 'slug' | 'comentarios' | 'activo' | 'fecha_desde_valido' | 'fecha_hasta_valido'>
+export type EtiquetaGeneralCrearActualizarFormState = EtiquetaGeneralCrearDto & EtiquetaGeneralActualizarDto
