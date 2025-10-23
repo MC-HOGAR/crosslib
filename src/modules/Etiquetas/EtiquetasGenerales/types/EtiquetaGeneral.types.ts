@@ -16,4 +16,17 @@ export type EtiquetaGeneralCrearDto = Pick<EtiquetaGeneral, 'nombre' | 'nombreWe
 
 export type EtiquetaGeneralActualizarDto = Pick<EtiquetaGeneral, 'nombre' | 'nombreWeb' | 'slug' | 'comentarios' | 'activo' | 'fecha_desde_valido' | 'fecha_hasta_valido'>
 
-//export type EtiquetaGeneralCrearActualizarFormState = EtiquetaGeneralCrearDto & EtiquetaGeneralActualizarDto
+export interface ValidacionArticuloResultado {
+  codigoArticulo: string;
+  valido: boolean;
+  errores: string[];
+}
+
+export interface ValidacionVinculacionResponseDto {
+  articulosValidos: string[];
+  articulosInvalidos: ValidacionArticuloResultado[];
+  totalValidos: number;
+  totalInvalidos: number;
+  etiquetaValida: boolean;
+  erroresEtiqueta: string[];
+}
