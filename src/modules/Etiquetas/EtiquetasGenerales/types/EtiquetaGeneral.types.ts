@@ -30,3 +30,13 @@ export interface ValidacionVinculacionResponseDto {
   etiquetaValida: boolean;
   erroresEtiqueta: string[];
 }
+
+export interface VincularEtiquetaArticulosRequestDto {
+  codigosArticulos: string[];
+  idEtiqueta: number;
+}
+
+export interface VincularEtiquetaArticulosResponseDto {
+  articulosVinculados: string[]
+  mensaje: string
+}
