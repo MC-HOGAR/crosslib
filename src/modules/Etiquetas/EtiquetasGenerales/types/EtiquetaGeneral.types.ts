@@ -38,5 +38,4 @@ export interface VincularEtiquetaArticulosRequestDto {
 
 export interface VincularEtiquetaArticulosResponseDto {
   articulosVinculados: string[]
-  mensaje: string
 }
