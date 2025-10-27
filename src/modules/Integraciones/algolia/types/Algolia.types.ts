@@ -1,4 +1,5 @@
 import { type EtiquetaGeneral } from '@/modules/Etiquetas/EtiquetasGenerales/types/EtiquetaGeneral.types'
+
 export interface ArticuloIndexObject {
   aik_ar_codigo: string
   precio_aikon: string
