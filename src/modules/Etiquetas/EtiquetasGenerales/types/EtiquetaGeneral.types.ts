@@ -22,7 +22,7 @@ export interface ValidacionArticuloResultado {
   errores: string[];
 }
 
-export interface ValidacionVinculacionResponseDto {
+interface ValidacionResponseDto {
   articulosValidos: string[];
   articulosInvalidos: ValidacionArticuloResultado[];
   totalValidos: number;
@@ -30,6 +30,9 @@ export interface ValidacionVinculacionResponseDto {
   etiquetaValida: boolean;
   erroresEtiqueta: string[];
 }
+
+export type ValidacionVinculacionResponseDto = ValidacionResponseDto
+export type ValidacionDesvinculacionResponseDto = ValidacionResponseDto
 
 export interface VincularEtiquetaArticulosRequestDto {
   codigosArticulos: string[];
