@@ -45,3 +45,5 @@ export type DesvincularEtiquetaArticulosRequestDto = VincularDesvincularEtiqueta
 export interface VincularDesvincularEtiquetaArticulosResponseDto {
   articulosAfectados: string[]
 }
+
+export const NUMERO_MAXIMO_ETIQUETAS_EN_ARTICULO = 4
