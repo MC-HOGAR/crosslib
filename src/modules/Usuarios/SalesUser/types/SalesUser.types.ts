@@ -47,9 +47,9 @@ export enum SalesCognitoAttributeEnum {
   CustomRole = 'custom:role',
   CustomStatus = 'custom:status',
   CustomUserType = 'custom:user-type',
-  CustomAikVendedorId = 'custom:aik-vendedor-id',
-  CustomAikDepositoCodigo = 'custom:aik-deposito-codigo',
-  CustomAikZonaId = 'custom:aik-zona-id',
+  CustomAikVenCodigo = 'custom:aik-ven-codigo',
+  CustomAikDeCodigo = 'custom:aik-de-codigo',
+  CustomAikZoCodigo = 'custom:aik-zo-codigo',
 }
 
 /**
@@ -97,9 +97,11 @@ export interface ISalesUser {
   dni: string;
   telefono: string; // Obligatorio para contacto WhatsApp
   role: SalesUserRoleEnum;
-  aik_vendedor_id: string | null;
-  aik_deposito_codigo: string | null; // Código del depósito de Aikon
-  aik_zona_id: number | null; // Solo para Vendedor y Cajero
+
+  aik_ven_codigo: string | null; // Código del vendedor en Aikon
+  aik_de_codigo: string | null;  // Código del depósito en Aikon
+  aik_zo_codigo: string | null;  // Código de zona en Aikon (solo Vendedor y Cajero)
+
   status: SalesUserStatusEnum;
   last_login: string | null; // DateTimeString
   last_password_change: string | null; // DateTimeString
@@ -119,9 +121,11 @@ export interface SalesCognitoUser {
   'custom:role': SalesUserRoleEnum;
   'custom:status': SalesUserStatusEnum;
   'custom:user-type': string; // 'Sales'
-  'custom:aik-vendedor-id'?: string;
-  'custom:aik-deposito-codigo'?: string;
-  'custom:aik-zona-id'?: string;
+
+  'custom:aik-ven-codigo'?: string;
+  'custom:aik-de-codigo'?: string;
+  'custom:aik-zo-codigo'?: string;
+
   email: string;
   email_verified: boolean;
   event_id: string;
@@ -139,14 +143,14 @@ export interface SalesCognitoUser {
  */
 export type SalesUserCreateRequest = Pick<
   ISalesUser,
-  'username' | 'email' | 'fullname' | 'dni' | 'telefono' | 'role' | 'aik_vendedor_id' | 'aik_deposito_codigo' | 'aik_zona_id'
+  'username' | 'email' | 'fullname' | 'dni' | 'telefono' | 'role' | 'aik_ven_codigo' | 'aik_de_codigo' | 'aik_zo_codigo'
 >;
 
 /**
  * DTOs para actualizar Sales User (sin username, email, dni)
  */
 export type SalesUserUpdateRequest = Partial<
-  Pick<ISalesUser, 'fullname' | 'telefono' | 'role' | 'status' | 'aik_vendedor_id' | 'aik_deposito_codigo' | 'aik_zona_id'>
+  Pick<ISalesUser, 'fullname' | 'telefono' | 'role' | 'status' | 'aik_ven_codigo' | 'aik_de_codigo' | 'aik_zo_codigo'>
 >;
 
 /**
