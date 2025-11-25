@@ -3,7 +3,7 @@ import {
     SALES_ROLES_AUDITABLES, 
     SalesUserRoleOptions, 
     SalesUserStatusEnum, 
-    SalesUserStatusOptions } from '@/modules/Usuarios/SalesUser/types/SalesUser.types'
+    SalesUserStatusOptions } from './../types/SalesUser.types'
 /**
  * Verificar si un rol debe ser auditado
  */
