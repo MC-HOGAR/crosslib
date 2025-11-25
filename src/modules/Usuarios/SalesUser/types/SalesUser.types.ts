@@ -109,6 +109,27 @@ export interface ISalesUser {
   updated_at: string; // DateTimeString
 }
 
+/* 
+username: string;
+    email: string;
+    fullname: string;
+    dni: string;
+    telefono: string;
+    role: string;
+    status: string;
+    last_login: Date | null;
+    last_password_change: Date | null;
+    created_at: Date;
+    updated_at: Date;
+    id: number;
+    aik_ven_codigo: string | null;
+    aik_de_codigo: string | null;
+    aik_zo_codigo: string | null;
+
+
+
+*/
+
 /**
  * Interface del usuario decodificado del JWT (Cognito)
  */
