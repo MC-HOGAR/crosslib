@@ -11,6 +11,7 @@ export enum SalesUserRoleEnum {
   ADMINISTRACION = 'ADMINISTRACION', // Rol administrativo (futuro)
   MARKETING = 'MARKETING',           // Rol de marketing (futuro)
   DEPOSITO = 'DEPOSITO',             // Rol de depósito (futuro)
+  USER = 'USER'                      // Rol Usuario básico.
 }
 
 /**
@@ -63,6 +64,7 @@ export enum SalesCognitoGroupEnum {
   PV_ADMINISTRACION = 'pv_administracion',
   PV_MARKETING = 'pv_marketing',
   PV_DEPOSITO = 'pv_deposito',
+  PV_USER = 'pv_user',
 }
 
 /**
@@ -76,6 +78,7 @@ export const SALES_ROLE_TO_COGNITO_GROUP: Record<SalesUserRoleEnum, SalesCognito
   [SalesUserRoleEnum.ADMINISTRACION]: SalesCognitoGroupEnum.PV_ADMINISTRACION,
   [SalesUserRoleEnum.MARKETING]: SalesCognitoGroupEnum.PV_MARKETING,
   [SalesUserRoleEnum.DEPOSITO]: SalesCognitoGroupEnum.PV_DEPOSITO,
+  [SalesUserRoleEnum.USER]: SalesCognitoGroupEnum.PV_USER,
 };
 
 /**
@@ -109,27 +112,6 @@ export interface ISalesUser {
   updated_at: string; // DateTimeString
 }
 
-/* 
-username: string;
-    email: string;
-    fullname: string;
-    dni: string;
-    telefono: string;
-    role: string;
-    status: string;
-    last_login: Date | null;
-    last_password_change: Date | null;
-    created_at: Date;
-    updated_at: Date;
-    id: number;
-    aik_ven_codigo: string | null;
-    aik_de_codigo: string | null;
-    aik_zo_codigo: string | null;
-
-
-
-*/
-
 /**
  * Interface del usuario decodificado del JWT (Cognito)
  */
@@ -158,21 +140,6 @@ export interface SalesCognitoUser {
   name: string;
   origin_jti: string;
 }
-
-/**
- * DTOs para crear Sales User
- */
-export type SalesUserCreateRequest = Pick<
-  ISalesUser,
-  'username' | 'email' | 'fullname' | 'dni' | 'telefono' | 'role' | 'aik_ven_codigo' | 'aik_de_codigo' | 'aik_zo_codigo'
->;
-
-/**
- * DTOs para actualizar Sales User (sin username, email, dni)
- */
-export type SalesUserUpdateRequest = Partial<
-  Pick<ISalesUser, 'fullname' | 'telefono' | 'role' | 'status' | 'aik_ven_codigo' | 'aik_de_codigo' | 'aik_zo_codigo'>
->;
 
 /**
  * Options para UI (Select, DataTable) - Compatible con Ant Design 5.x y React 19
