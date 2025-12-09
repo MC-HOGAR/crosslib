@@ -12,7 +12,7 @@ export function isRoleAuditable(role: SalesUserRoleEnum): boolean {
 }
 
 /**
- * Verificar si un rol requiere depósito y zona. (tal vez tambien para codVendedorAikon)
+ * Verificar si el rol es vendedor o cajero.
  */
 export function roleIsVendedorOrCajero(role: SalesUserRoleEnum): boolean {
   return role === SalesUserRoleEnum.VENDEDOR || role === SalesUserRoleEnum.CAJERO;

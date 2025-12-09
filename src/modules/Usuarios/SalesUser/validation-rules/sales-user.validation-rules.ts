@@ -2,7 +2,7 @@ import {
   DEPOSITO_VALIDATION_RULES, 
   ZONAS_VALIDATION_RULES, 
   VENDEDORES_VALIDATION_RULES 
-} from '@/modules/Aikon/Ventas/validation-rules';
+} from './../../../Aikon/Ventas/validation-rules';
 
 /**
  * Reglas de validación específicas para SalesUser
@@ -18,9 +18,9 @@ export const SALES_USER_VALIDATION_RULES = {
     DESCRIPTION: 'Nombre de usuario único',
     ERROR_MESSAGES: {
       REQUIRED: 'El nombre de usuario es obligatorio',
-      INVALID_FORMAT: 'El username solo puede contener letras, números, guiones y guiones bajos',
-      MAX_LENGTH: 'El username no puede exceder 50 caracteres',
-      MIN_LENGTH: 'El username debe tener al menos 5 caracteres',
+      INVALID_FORMAT: 'El nombre de usuario solo puede contener letras, números, guiones y guiones bajos',
+      MAX_LENGTH: 'El nombre de usuario no puede exceder 50 caracteres',
+      MIN_LENGTH: 'El nombre de usuario debe tener al menos 5 caracteres',
       ALREADY_EXISTS: 'Este nombre de usuario ya está en uso'
     }
   },
@@ -74,9 +74,9 @@ export const SALES_USER_VALIDATION_RULES = {
     DESCRIPTION: 'Número de teléfono (Formato "<cod_area>-<nro_tel>)"',
     ERROR_MESSAGES: {
       REQUIRED: 'El teléfono es obligatorio',
-      INVALID_FORMAT: 'El teléfono debe contener solo números y símbolos válidos (+, -, (), espacios)',
+      INVALID_FORMAT: 'El teléfono debe tener el formato "<cod_area>-<nro-tel>"',
       MAX_LENGTH: 'El teléfono no puede exceder 20 caracteres',
-      MIN_LENGTH: 'El teléfono debe tener al menos 10 caracteres'
+      MIN_LENGTH: 'El teléfono debe tener al menos 7 caracteres'
     }
   },
 
@@ -86,7 +86,7 @@ export const SALES_USER_VALIDATION_RULES = {
     DESCRIPTION: 'Código del vendedor asignado (referencia a aikon_vendedores)',
     ERROR_MESSAGES: {
       ...VENDEDORES_VALIDATION_RULES.CODIGO.ERROR_MESSAGES,
-      NOT_FOUND: 'El código de vendedor especificado no existe en Aikon',
+      NOT_FOUND: 'El código de vendedor especificado no existe',
       REQUIRED_FOR_ROLE: 'El código de vendedor es obligatorio para roles Vendedor y Cajero'
     }
   },
@@ -96,7 +96,7 @@ export const SALES_USER_VALIDATION_RULES = {
     DESCRIPTION: 'Código del depósito asignado (referencia a aikon_deposito)',
     ERROR_MESSAGES: {
       ...DEPOSITO_VALIDATION_RULES.CODIGO.ERROR_MESSAGES,
-      NOT_FOUND: 'El código de depósito especificado no existe en Aikon',
+      NOT_FOUND: 'El código de depósito especificado no existe',
       REQUIRED_FOR_ROLE: 'El código de depósito es obligatorio para roles Vendedor y Cajero'
     }
   },
@@ -106,7 +106,7 @@ export const SALES_USER_VALIDATION_RULES = {
     DESCRIPTION: 'Código de zona asignada (referencia a aikon_zonas)',
     ERROR_MESSAGES: {
       ...ZONAS_VALIDATION_RULES.CODIGO.ERROR_MESSAGES,
-      NOT_FOUND: 'El código de zona especificado no existe en Aikon',
+      NOT_FOUND: 'El código de zona especificado no existe',
       REQUIRED_FOR_ROLE: 'El código de zona es obligatorio para roles Vendedor y Cajero'
     }
   }
