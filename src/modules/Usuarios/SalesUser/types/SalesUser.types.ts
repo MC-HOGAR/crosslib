@@ -22,6 +22,13 @@ export enum SalesUserStatusEnum {
   Inactivo = 'Inactivo',
 }
 
+export enum SalesLogEntityNameEnum {
+    Presupuesto = "Presupuesto",
+    ClienteActual = "ClienteActual",
+    ClientePotencial = "ClientePotencial",
+    Impresion = "Impresion"
+}
+
 /**
  * Tipos de eventos de logs (solo para vendedores y cajeros)
  */
