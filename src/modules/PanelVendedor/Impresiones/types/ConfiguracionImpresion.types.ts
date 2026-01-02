@@ -4,12 +4,12 @@ import { ArticuloImpresion, ArticuloConPlanSeleccionado } from './Articulo.types
 /**
  * Marco decorativo opcional para la impresión
  */
-export interface Marco {
+/*export interface Marco {
   id: string;
   nombre: string;
   imagen_url: string;
   thumbnail_url: string;
-}
+}*/
 
 /**
  * Configuración base para generar una impresión
