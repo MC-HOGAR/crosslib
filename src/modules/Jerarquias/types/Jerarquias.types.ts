@@ -12,6 +12,7 @@ export interface IFamilia {
     aik_fa_nivel: string
     aik_fa_palm: string
 }
+
 export type IFamiliaData = IFamilia
 
 export interface ICategoriaRubro {
@@ -26,7 +27,6 @@ export interface IRubroFamilia {
 }
 
 
-
 export interface ICategoriaRubroIncludingRubro extends ICategoriaRubro {
     aikon_referencia02: IRubro
 }
@@ -38,6 +38,7 @@ export interface ICategoriaIncludingCategoriaRubro extends ICategoria {
 export interface IRubroFamiliaIncludingFamilia extends IRubroFamilia {
     aikon_familia: IFamilia
 }
+
 
 export interface IRubroIncludingRubroFamilia extends IRubro {
     rubro_familia: IRubroFamiliaIncludingFamilia[]
