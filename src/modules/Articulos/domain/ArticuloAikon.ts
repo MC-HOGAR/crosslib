@@ -32,6 +32,9 @@ export class ArticuloAikon {
   aik_ap_impuesto_interno: Decimal; // Impuesto Interno (%)
   aik_iva_porcen: Decimal; // IVA (%)
   aik_stock_total: number; // Stock total disponible
+  ultima_fecha_reingreso_stock: string | null;
+  ultima_fecha_sync_completo: string | null;
+  ultima_fecha_sync_info_relevante: string | null;
   aik_ap_precio_iva: Decimal; // Precio con IVA calculado por otro sistema Aikon erp.
   aik_ar_publicarweb: string;
   aik_ar_descri: string;
@@ -66,6 +69,9 @@ export class ArticuloAikon {
     this.aik_ap_impuesto_interno = new Decimal(data.aik_ap_impuesto_interno);
     this.aik_iva_porcen = new Decimal(data.aik_iva_porcen);
     this.aik_stock_total = data.aik_stock_total;
+    this.ultima_fecha_reingreso_stock = data.ultima_fecha_reingreso_stock;
+    this.ultima_fecha_sync_completo = data.ultima_fecha_sync_completo;
+    this.ultima_fecha_sync_info_relevante = data.ultima_fecha_sync_info_relevante;
     this.aik_ap_precio_iva = new Decimal(data.aik_ap_precio_iva);
     this.aik_ar_publicarweb = data.aik_ar_publicarweb;
     this.aik_ar_descri = data.aik_ar_descri;

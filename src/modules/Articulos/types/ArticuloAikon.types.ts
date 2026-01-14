@@ -6,6 +6,9 @@ export interface IArticuloAikonData {
     aik_ap_impuesto_interno: string;
     aik_iva_porcen: string;
     aik_stock_total: number;
+    ultima_fecha_reingreso_stock: string;
+    ultima_fecha_sync_completo: string;
+    ultima_fecha_sync_info_relevante: string;
     aik_ap_precio_iva: string;
     aik_ar_publicarweb: string;
     aik_ar_descri: string;

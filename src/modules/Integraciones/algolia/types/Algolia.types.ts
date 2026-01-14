@@ -4,6 +4,8 @@ export interface ArticuloIndexObject {
   aik_ar_codigo: string
   precio_aikon: string
   aik_stock_total: number
+  ultima_fecha_reingreso_stock_timestamp?: number
+  esReingreso: boolean
   aik_ar_fecha_alta: string
   aik_ar_fecha_alta_timestamp: number
   marca: string
