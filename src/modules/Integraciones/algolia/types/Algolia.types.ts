@@ -46,3 +46,9 @@ export interface ArticuloIndexObject {
   } | null
   etiquetas_generales: EtiquetaGeneral[] | null
 }
+
+export enum IndexEnum {
+  articulos_index = "articulos_index",
+  articulos_index_fecha_alta_desc = "articulos_index_fecha_alta_desc",
+  query_suggestions = "query_suggestions"
+}
