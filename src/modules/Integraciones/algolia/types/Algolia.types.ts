@@ -50,5 +50,7 @@ export interface ArticuloIndexObject {
 export enum IndexEnum {
   articulos_index = "articulos_index",
   articulos_index_fecha_alta_desc = "articulos_index_fecha_alta_desc",
+  ultima_fecha_reingreso_stock_desc = "ultima_fecha_reingreso_stock_desc",
+  fecha_reingreso_nuevo_ingreso_stock_desc = "fecha_reingreso_nuevo_ingreso_stock_desc",
   query_suggestions = "query_suggestions"
 }
