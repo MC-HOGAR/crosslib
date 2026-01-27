@@ -1,6 +1,8 @@
-export interface cliente {
+import { ILabelValuePair } from '@/common/types/UI.types'
+
+export interface ICliente {
     id: number
-    external_system: string | null
+    external_system: string | null // SistemaExterno
 
     dni: string
     nombre: string
@@ -10,14 +12,14 @@ export interface cliente {
     nombre_normalizado: string
     apellido_normalizado: string
 
-    genero: string
+    genero: string // Genero
     email: string
     tel_cod_area: string
     tel_numero: string
     tel_completo: string
     tel_verificado: boolean
-    estado: string
-    origen_creacion: string
+    estado: string // ClienteEstado
+    origen_creacion: string // SistemaPropio
 
     vendedor_creador_id: number | null
     vendedor_asignado_id: number | null
@@ -35,7 +37,7 @@ export interface cliente {
     fecha_ultima_compra: string | null
     fecha_ultimo_login: string | null
 
-    tipo: string
+    tipo: string // ClienteTipo
     fecha_convertido_a_cliente: string | null
     vendedor_convertidor_id: number | null
 
@@ -50,16 +52,37 @@ export enum Genero {
     M = "M",
     F = "F"
 }
-enum ClienteEstado {
+export enum ClienteEstado {
     ACTIVO = "ACTIVO",
     INACTIVO = "INACTIVO",
     BLOQUEADO = "BLOQUEADO"
 }
-enum SistemaPropio {
+export enum SistemaPropio {
     STOREFRONT = "STOREFRONT",
     PANEL_VENDEDOR = "PANEL_VENDEDOR"
 }
-enum ClienteTipo {
+export enum ClienteTipo {
   CLIENTE_POTENCIAL = "CLIENTE_POTENCIAL",
   CLIENTE_FACTURACION = "CLIENTE_FACTURACION"
 }
+
+export const GeneroSelectOptions: ILabelValuePair<Genero>[] = [
+  { label: 'Masculino', value: Genero.M },
+  { label: 'Femenino', value: Genero.F },
+];
+
+export const ClienteEstadoSelectOptions: ILabelValuePair<ClienteEstado>[] = [
+  { label: 'Activo', value: ClienteEstado.ACTIVO },
+  { label: 'Inactivo', value: ClienteEstado.INACTIVO },
+  { label: 'Bloqueado', value: ClienteEstado.BLOQUEADO },
+];
+
+export const SistemaPropioSelectOptions: ILabelValuePair<SistemaPropio>[] = [
+  { label: 'PANEL_VENDEDOR', value: SistemaPropio.PANEL_VENDEDOR },
+  { label: 'STOREFRONT', value: SistemaPropio.STOREFRONT },
+];
+
+export const ClienteTipoSelectOptions: ILabelValuePair<ClienteTipo>[] = [
+  { label: 'Cliente Potencial', value: ClienteTipo.CLIENTE_POTENCIAL },
+  { label: 'Cliente Facturacion', value: ClienteTipo.CLIENTE_FACTURACION },
+];
