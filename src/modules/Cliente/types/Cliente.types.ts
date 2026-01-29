@@ -3,6 +3,7 @@ import { ILabelValuePair } from '@/common/types/UI.types'
 export interface ICliente {
     id: number
     external_system: string | null // SistemaExterno
+    external_id: string | null
 
     dni: string
     nombre: string
