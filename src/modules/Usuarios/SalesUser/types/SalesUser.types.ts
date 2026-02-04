@@ -23,10 +23,9 @@ export enum SalesUserStatusEnum {
 }
 
 export enum SalesLogEntityNameEnum {
-    Presupuesto = "Presupuesto",
-    ClienteActual = "ClienteActual",
-    ClientePotencial = "ClientePotencial",
-    Impresion = "Impresion"
+  Cliente = "Cliente",
+  Presupuesto = "Presupuesto",
+  Impresion = "Impresion"
 }
 
 /**
@@ -55,6 +54,7 @@ export enum SalesCognitoAttributeEnum {
   CustomRole = 'custom:role',
   CustomStatus = 'custom:status',
   CustomUserType = 'custom:user-type',
+  CustomId = 'custom:id',
   CustomAikVenCodigo = 'custom:aik-ven-codigo',
   CustomAikDeCodigo = 'custom:aik-de-codigo',
   CustomAikZoCodigo = 'custom:aik-zo-codigo',
@@ -131,6 +131,7 @@ export interface SalesCognitoUser {
   'custom:role': SalesUserRoleEnum;
   'custom:status': SalesUserStatusEnum;
   'custom:user-type': string; // 'Sales'
+  'custom:id': string; // id de la base de datos.
 
   'custom:aik-ven-codigo'?: string;
   'custom:aik-de-codigo'?: string;
