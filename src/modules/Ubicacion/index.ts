@@ -1,0 +1,1 @@
+export * from './types/ubicacion.types'
