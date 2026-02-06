@@ -107,6 +107,7 @@ export interface ISalesUser {
   dni: string;
   telefono: string; // Obligatorio para contacto WhatsApp
   role: SalesUserRoleEnum;
+  id_sucursal: number
 
   aik_ven_codigo: string | null; // Código del vendedor en Aikon
   aik_de_codigo: string | null;  // Código del depósito en Aikon
