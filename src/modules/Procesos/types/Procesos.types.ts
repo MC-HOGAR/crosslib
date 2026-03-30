@@ -23,9 +23,24 @@ const TipoProcesoRecalcularPrecios: TipoProcesoInfo = {
     nombre: 'ProcesoRecalcularPrecios',
     descripcion: `Se recalculan los precios de los artículos.`
 }
-export type IDS_TIPO_PROCESOS = 1 | 2 | 3
-export type NOMBRES_TIPO_PROCESOS = 'ProcesoSincronizacionConAikonCompleto' | 'ProcesoSincronizacionArticuloInfoRelevante' | 'ProcesoRecalcularPrecios'
+const TipoProcesoSincronizacionStockPorDeposito: TipoProcesoInfo = {
+    id: 4,
+    nombre: 'ProcesoSincronizacionStockPorDeposito',
+    descripcion: `Sincroniza el stock desagregado por depósito (DtTabla=STOCK) desde Aikon ERP hacia la tabla aikon_stock.`
+}
+Object.freeze(TipoProcesoSincronizacionStockPorDeposito)
+
+export type IDS_TIPO_PROCESOS = 1 | 2 | 3 | 4
+export type NOMBRES_TIPO_PROCESOS = 'ProcesoSincronizacionConAikonCompleto' | 
+                                    'ProcesoSincronizacionArticuloInfoRelevante' | 
+                                    'ProcesoRecalcularPrecios' | 
+                                    'ProcesoSincronizacionStockPorDeposito'
 export type SYSTEM_PROCESS_STATE_ALLOWED_VALUES = 'EXECUTING' | 'NOT_EXECUTING';
+
+enum StepNameProcesoInfoDetalleSincronizacionStockPorDeposito {
+    ObtenerToken                    = 'ObtenerToken',
+    EjecutarSincronizacionStock     = 'EjecutarSincronizacionStock',
+}
 
 Object.freeze(TipoProcesoProcesoSincronizacionConAikonCompleto)
 Object.freeze(TipoProcesoSincronizacionArticuloInfoRelevante)
@@ -66,7 +81,7 @@ enum StepNameProcesoInfoDetalleProcesoRecalcularPrecios {
     EjecutarUpdates = "EjecutarUpdates"
 }
 
-export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto | StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoDetalleProcesoRecalcularPrecios | StepNameProcesoInfoInicioFin
+export type PROCESO_INFO_DETALLE_STEP_NAMES = StepNameProcesoInfoDetalleSincronizacionConAikonCompleto |                       StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante | StepNameProcesoInfoDetalleProcesoRecalcularPrecios | StepNameProcesoInfoInicioFin | StepNameProcesoInfoDetalleSincronizacionStockPorDeposito
 
 enum EstadoEjecucion {
     Procesando = "Procesando",
@@ -77,9 +92,11 @@ export {
     TipoProcesoProcesoSincronizacionConAikonCompleto,
     TipoProcesoSincronizacionArticuloInfoRelevante,
     TipoProcesoRecalcularPrecios,
+    TipoProcesoSincronizacionStockPorDeposito,
     StepNameProcesoInfoDetalleSincronizacionConAikonCompleto,
     StepNameProcesoInfoDetalleProcesoSincronizacionArticuloInfoRelevante,
     StepNameProcesoInfoDetalleProcesoRecalcularPrecios,
     StepNameProcesoInfoInicioFin,
-    EstadoEjecucion
+    EstadoEjecucion,
+    StepNameProcesoInfoDetalleSincronizacionStockPorDeposito
 }
