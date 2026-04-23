@@ -59,3 +59,28 @@ export interface PlanPagoPrisma {
   banco_id: number;
   nro_comercio_id: number | null;
 }
+
+/* Se utiliza en Presupuesto */
+export type PlanSnapshot = {
+  id: number;
+  comentariosWeb:                string | null;
+  cantidad_cuotas:               number;
+  coeficiente_recargo_descuento: string;   // Decimal serializado como string
+  porcentaje_reintegro:          string | null;
+  badge_img_url:                 string | null;
+  fecha_desde_valido:            string | null;  // ISO string
+  fecha_hasta_valido:            string | null;  // ISO string
+  servicio_pago: {
+    nombre:    string;
+    nombreWeb: string;
+  };
+  tarjeta: {
+    nombre:      string;
+    nombreWeb:   string;
+    tipo_tarjeta: 'CREDITO' | 'DEBITO';
+  };
+  banco: {
+    nombre:    string;
+    nombreWeb: string;
+  };
+}
