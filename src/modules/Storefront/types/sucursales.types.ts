@@ -37,6 +37,7 @@ export interface SucursalStorefront {
     horario_lun_vier_tarde: string | null
     horario_sab_manana: string | null
     horario_sab_tarde: string | null
+    email: string
     
     // Campos internos expuestos para display web
     direccion_texto: string | null
