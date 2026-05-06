@@ -19,6 +19,7 @@ export enum CustomerCognitoAttributeEnum {
     Locale        = 'locale',
     CustomUserType = 'custom:user-type',
     CustomId      = 'custom:id',  // ec_customer_user.id (string)
+    CustomTelCompleto = 'custom:tel_completo',
 }
 
 // ─── Interfaces ───────────────────────────────────────────────────────────────
