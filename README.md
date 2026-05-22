@@ -10,5 +10,5 @@ Crosslib is an isomorphic TypeScript library that centralizes shared domain mode
 - Verificar si la versión del package.json se cambio (siempre la incrementamos en 1)
 - Verificar que el "Granular Access Token" que emite npm no este expirado.
   - Para volver a generarlo ir a la página de npm y generar el nuevo token asignandole la configuración deseada.
-  - Ejecutar el comando: npm config set //registry.npmjs.org/:_authToken "TU_NUEVO_TOKEN_GRANULAR"
+  - Ejecutar el comando: npm config set //registry.npmjs.org/:_authToken="TU_NUEVO_TOKEN_GRANULAR"
 - Asegurarse de estar logeado en npm con npm login.
