@@ -45,6 +45,7 @@ export interface ArticuloIndexObject {
     nro_comercio_id: number;
   } | null
   etiquetas_generales: EtiquetaGeneral[] | null
+  inhabilitado_compra_online:    boolean
 }
 
 export enum IndexEnum {
