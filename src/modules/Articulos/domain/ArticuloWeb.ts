@@ -10,6 +10,9 @@ export class ArticuloWeb {
     ar_galeria: IImageBucketFile[]
     updated_at: string | null
     ar_activo: boolean
+    cantidad_minima_compra: number | null
+    cantidad_incremento_compra: number | null
+    inhabilitado_compra_online: boolean | null
 
     constructor (data: IArticuloWebData) {
         this.aik_ar_codigo = data.aik_ar_codigo
@@ -20,5 +23,8 @@ export class ArticuloWeb {
         this.ar_galeria = data.ar_galeria
         this.updated_at = data.updated_at
         this.ar_activo = data.ar_activo
+        this.cantidad_minima_compra = data.cantidad_minima_compra
+        this.cantidad_incremento_compra = data.cantidad_incremento_compra
+        this.inhabilitado_compra_online = data.inhabilitado_compra_online
     }
 }

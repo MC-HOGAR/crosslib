@@ -9,6 +9,9 @@ export interface IArticuloWebData {
     ar_galeria: IImageBucketFile[]
     updated_at: string | null
     ar_activo: boolean
+    cantidad_minima_compra: number | null
+    cantidad_incremento_compra: number | null
+    inhabilitado_compra_online: boolean | null
 }
 
 export const ARTICULO_WEB_IMAGE_METADATA = {

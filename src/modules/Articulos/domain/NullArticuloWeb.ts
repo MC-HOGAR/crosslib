@@ -10,7 +10,10 @@ const nullArticuloWebData: IArticuloWebData = {
     ar_slug: '',
     ar_galeria: [],
     updated_at: null,
-    ar_activo: true
+    ar_activo: true,
+    cantidad_incremento_compra: null,
+    cantidad_minima_compra: null,
+    inhabilitado_compra_online: false
 }
 
 export class NullArticuloWeb extends ArticuloWeb {
