@@ -5,7 +5,7 @@
  */
 export type OrigenCancelacion =
     | 'MOTOR_REGLAS'       // Validación del motor de reglas al confirmar el pago
-    | 'TIMEOUT_PAGO'       // Cancelación automática por el cron (24hs sin pago)
+    | 'TIMEOUT_PAGO'       // Cancelación automática por el cron
     | 'CANCELACION_MANUAL' // Cancelación manual por el operador (feature futura)
     | null
 
@@ -20,4 +20,4 @@ export const MAX_REINTENTOS_PAGO = 7
  * Aplica tanto a PENDIENTE_PAGO como a PAGO_FALLIDO.
  * Pasado este tiempo, el cron cancela la orden automáticamente.
  */
-export const HORAS_LIMITE_PAGO = 24
+export const HORAS_LIMITE_PAGO = 48
