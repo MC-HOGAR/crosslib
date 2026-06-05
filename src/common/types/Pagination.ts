@@ -22,6 +22,7 @@ export interface IFiltrosArticulosPaginadoTier1 {
     codigosEstadoArticulo?: string[]
     activoWeb?:             string
     codArticulo?:           string
+    inhabilitadoCompraOnline?: boolean
 }
 
 export interface IListadoPaginadoArticuloOptions {
