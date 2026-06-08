@@ -1,1 +1,2 @@
-export * from './Impresiones'
+export * from './Impresiones';
+export * from './Ecommerce';
