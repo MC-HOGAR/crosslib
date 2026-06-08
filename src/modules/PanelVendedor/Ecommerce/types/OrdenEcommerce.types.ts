@@ -133,8 +133,7 @@ export interface OrdenEcommerceListado {
     };
     sucursal:  { id: number; nombre: string } | null;
     zona_envio: { id: number; nombre: string } | null;
-    /** Conteo de ítems */
-    _count:    { items: number };
+    items: OrdenItem[];
     /** Último pago registrado — para mostrar tipo_pago (crédito/débito) en los ítems expandibles */
     pagos:     OrdenPago[];
 }
