@@ -36,11 +36,14 @@ export enum TipoPagoEnum {
 }
 
 export enum PagoEstadoEnum {
-    PENDIENTE   = 'PENDIENTE',
-    APROBADO    = 'APROBADO',
-    RECHAZADO   = 'RECHAZADO',
-    EN_PROCESO  = 'EN_PROCESO',
-    REEMBOLSADO = 'REEMBOLSADO',
+    PENDIENTE       = 'PENDIENTE',
+    AUTORIZADO      = 'AUTORIZADO',
+    APROBADO        = 'APROBADO',
+    RECHAZADO       = 'RECHAZADO',
+    EN_PROCESO      = 'EN_PROCESO',
+    REEMBOLSADO     = 'REEMBOLSADO',
+    CONTRACARGO     = 'CONTRACARGO',
+    EN_MEDIACION    = 'EN_MEDIACION',
 }
 
 // ── Snapshots de entrega (inmutables al momento de creación de la orden) ──────
@@ -104,6 +107,8 @@ export interface OrdenPago {
     monto:      number;
     tipo_pago:  TipoPagoEnum;
     proveedor:  string;
+    nro_cupon:  number | null;
+    nro_lote:   string | null;
     created_at: string;
 }
 
@@ -247,3 +252,14 @@ export const TIPO_PAGO_LABEL: Record<TipoPagoEnum, string> = {
     [TipoPagoEnum.CREDITO]: 'Crédito',
     [TipoPagoEnum.DEBITO]:  'Débito',
 };
+
+export const PAGO_ESTADO_LABEL: Record<PagoEstadoEnum, string> = {
+    [PagoEstadoEnum.PENDIENTE]:    'Pendiente',
+    [PagoEstadoEnum.AUTORIZADO]:   'Autorizado',
+    [PagoEstadoEnum.APROBADO]:     'Aprobado',
+    [PagoEstadoEnum.RECHAZADO]:    'Rechazado',
+    [PagoEstadoEnum.EN_PROCESO]:   'En proceso',
+    [PagoEstadoEnum.REEMBOLSADO]:  'Reembolsado',
+    [PagoEstadoEnum.CONTRACARGO]:  'Contracargo',
+    [PagoEstadoEnum.EN_MEDIACION]: 'En mediación',
+}
