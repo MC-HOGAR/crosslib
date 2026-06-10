@@ -76,13 +76,31 @@ export interface EntregaSucursalSnapshot {
 export interface OrdenClienteInfo {
     /** ID del ec_customer_user */
     id:          number;
+
     /** DNI del cliente CRM */
     dni:         string;
     nombre:      string;
     apellido:    string;
+
     /** Teléfono completo (cod_area + numero) */
     tel_completo: string | null;
     email:       string;
+    cliente_direccion: ClienteDireccion[];
+}
+
+export interface ClienteDireccion {
+    id:                       number;
+    alias:                    string | null;
+    calle_nombre:             string;
+    calle_numero:             string;
+    piso_depto:               string | null;
+    barrio:                   string | null;
+    codigo_postal:            string | null;
+    es_principal_envio:       boolean;
+    es_principal_facturacion: boolean;
+    tipo:                     'ENVIO' | 'FACTURACION' | 'REAL';
+    localidad:                { id: number; nombre: string };
+    provincia:                { id: number; nombre: string };
 }
 
 /** Ítem de la orden con precios snapshot */
@@ -100,6 +118,22 @@ export interface OrdenItem {
     subtotal:                            number;
 }
 
+export interface PagoMercadoPagoDetalle {
+    mp_authorization_code:    string | null;
+    mp_installments:          number | null;
+    mp_installment_amount:    number | null;
+    mp_transaction_amount:    number | null;
+    mp_card_first_six_digits: string | null;
+    mp_card_last_four_digits: string | null;
+    mp_payment_method_id:     string | null;
+    mp_payment_type_id:       string | null;
+    mp_cardholder_name:       string | null;
+    mp_card_expiration_month: number | null;
+    mp_card_expiration_year:  number | null;
+    mp_card_id_type:          string | null;
+    mp_card_id_number:        string | null;
+}
+
 /** Registro de pago asociado a la orden */
 export interface OrdenPago {
     id:         number;
@@ -110,6 +144,9 @@ export interface OrdenPago {
     nro_cupon:  number | null;
     nro_lote:   string | null;
     created_at: string;
+    
+    /** Presente solo en el detalle de orden — null en listados */
+    mercadopago: PagoMercadoPagoDetalle | null;
 }
 
 // ── Respuesta de listado (Seguimiento + Órdenes generales) ────────────────────
