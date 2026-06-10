@@ -76,7 +76,8 @@ export interface EntregaSucursalSnapshot {
 export interface OrdenClienteInfo {
     /** ID del ec_customer_user */
     id:          number;
-
+    cliente_id:        number;
+    external_id:       string | null;
     /** DNI del cliente CRM */
     dni:         string;
     nombre:      string;
@@ -144,7 +145,7 @@ export interface OrdenPago {
     nro_cupon:  number | null;
     nro_lote:   string | null;
     created_at: string;
-    
+
     /** Presente solo en el detalle de orden — null en listados */
     mercadopago: PagoMercadoPagoDetalle | null;
 }
@@ -219,9 +220,10 @@ export interface CambiarEstadoOrdenPayload {
 
 export interface CargarFacturaOrdenPayload {
     comprobante_codigo:      string;
-    comprobante_sucursal:    number;
+    comprobante_sucursal:    string;
     comprobante_nro_fiscal:  string;
     comprobante_tipo:        ComprobanteOrdenTipoEnum;
+    
     /** S3 key del PDF — obligatorio para que facturado = true */
     comprobante_factura_key: string;
     observaciones?:          string;
