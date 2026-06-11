@@ -268,6 +268,34 @@ export interface FiltrosOrdenesParams {
     take?:              number;
 }
 
+export interface TicketPagoMpDetalle {
+    mp_authorization_code:    string | null;
+    mp_installments:          number | null;
+    mp_installment_amount:    number | null;
+    mp_transaction_amount:    number | null;
+    mp_card_last_four_digits: string | null;
+    mp_payment_method_id:     string | null;
+    mp_cardholder_name:       string | null;
+    mp_card_id_type:          string | null;
+    mp_card_id_number:        string | null;
+}
+
+export interface TicketPagoPago {
+    id:          number;
+    estado:      PagoEstadoEnum;
+    monto:       number;
+    tipo_pago:   TipoPagoEnum;
+    nro_cupon:   number | null;
+    nro_lote:    string | null;
+    mercadopago: TicketPagoMpDetalle | null;
+}
+
+export interface OrdenTicketPagoData {
+    id:         number;
+    created_at: string;
+    pagos:      TicketPagoPago[];   // máximo 1 — el pago APROBADO
+}
+
 // ── Labels UI — útiles tanto en frontend como en lógica de negocio ───────────
 
 export const ORDEN_ESTADO_LABEL: Record<OrdenEstadoEnum, string> = {
