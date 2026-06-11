@@ -47,18 +47,18 @@ export enum PagoEstadoEnum {
 }
 
 // ── Snapshots de entrega (inmutables al momento de creación de la orden) ──────
-
 export interface EntregaDomicilioSnapshot {
-    localidad_id:            number;
-    localidad:               string;
-    provincia:               string;
-    calle_nombre:            string;
-    calle_numero?:           string;
-    piso?:                   string;
-    depto?:                  string;
-    codigo_postal?:          string;
-    tiempo_entrega_estimado?: string;
-    costo_envio:             number;
+    localidad_id:  number;
+    localidad:     string;
+    provincia_id:  number;     
+    provincia:     string;
+    calle_nombre:  string;
+    calle_numero:  string;
+    piso_depto:    string | null;
+    barrio:        string | null;
+    codigo_postal: string | null;
+    referencias:   string | null;
+    tiempo_entrega_estimado: string | null;
 }
 
 export interface EntregaSucursalSnapshot {
