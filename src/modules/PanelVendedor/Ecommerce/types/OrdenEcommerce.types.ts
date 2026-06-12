@@ -225,8 +225,7 @@ export interface CargarFacturaOrdenPayload {
     comprobante_tipo:        ComprobanteOrdenTipoEnum;
     
     /** S3 key del PDF — obligatorio para que facturado = true */
-    comprobante_factura_key: string;
-    observaciones?:          string;
+    comprobante_factura_key?: string;
 }
 
 export interface SolicitarUrlSubidaFacturaPayload {
@@ -294,6 +293,18 @@ export interface OrdenTicketPagoData {
     id:         number;
     created_at: string;
     pagos:      TicketPagoPago[];   // máximo 1 — el pago APROBADO
+}
+
+export interface OrdenFacturaData {
+  id:                      number;
+  estado:                  OrdenEstadoEnum;
+  facturado:               boolean;
+  comprobante_codigo:      string | null;
+  comprobante_sucursal:    string | null;
+  comprobante_nro_fiscal:  string | null;
+  comprobante_tipo:        ComprobanteOrdenTipoEnum | null;
+  comprobante_factura_key: string | null;
+  observaciones:           string | null;
 }
 
 // ── Labels UI — útiles tanto en frontend como en lógica de negocio ───────────
