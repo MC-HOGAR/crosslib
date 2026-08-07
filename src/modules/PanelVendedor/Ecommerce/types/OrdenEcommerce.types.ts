@@ -72,11 +72,16 @@ export interface EntregaSucursalSnapshot {
 
 // ── Entidades relacionadas ────────────────────────────────────────────────────
 
-/** Cliente vinculado a la orden via ec_customer_user → cliente (CRM) */
+/**
+ * Cliente del CRM vinculado a la orden, via ec_customer_user → cliente.
+ *
+ * OJO: este objeto describe al **cliente CRM**, no a la cuenta de tienda.
+ * El ID de la cuenta vive un nivel más arriba, en `customer_user.id`.
+ */
 export interface OrdenClienteInfo {
-    /** ID del ec_customer_user */
+    /** ID del cliente CRM (`cliente.id`) — NO es el de la cuenta de tienda */
     id:          number;
-    cliente_id:        number;
+    /** Nro. Cliente en el sistema externo (Aikon/ERP) */
     external_id:       string | null;
     /** DNI del cliente CRM */
     dni:         string;
@@ -169,9 +174,15 @@ export interface OrdenEcommerceListado {
     telefono_cliente_snapshot: string | null;
     created_at:               string;
     updated_at:               string;
-    /** Cliente CRM con DNI — via ec_customer_user → cliente */
+    /**
+     * Cuenta de tienda del comprador (`ec_customer_user`) y, anidado, su
+     * cliente del CRM. Son dos identificadores distintos: usar `customer_user.id`
+     * donde corresponde el cliente muestra un número que no le pertenece.
+     */
     customer_user: {
+        /** ID de la cuenta de tienda (`ec_customer_user.id`) */
         id:      number;
+        /** Cliente CRM — su `id` es `cliente.id` */
         cliente: OrdenClienteInfo;
     };
     sucursal:  { id: number; nombre: string } | null;
@@ -196,6 +207,10 @@ export interface OrdenEcommerceDetalle extends Omit<OrdenEcommerceListado, '_cou
     entrega_domicilio_snapshot:      EntregaDomicilioSnapshot | null;
     entrega_sucursal_snapshot:       EntregaSucursalSnapshot | null;
     items:                           OrdenItem[];
+    /** `MOTOR_REGLAS` | `TIMEOUT_PAGO` | `MANUAL` */
+    origen_cancelacion:              string | null;
+    motivo_cancelado:                string | null;
+    observaciones_cancelacion_manual: string | null;
 }
 
 // ── Respuesta paginada genérica ───────────────────────────────────────────────
@@ -256,10 +271,29 @@ export interface FiltrosOrdenesParams {
     estados?:           string;
     tipo_entrega?:      TipoEntregaEnum;
     sucursal_retiro_id?: number;
+
+    // ── Filtros sobre el comprador ───────────────────────────────────────────
+    // Tres identificadores distintos y NO intercambiables. Ver OrdenClienteInfo.
+    /** ID de la cuenta de tienda (`ec_customer_user.id`) */
     customer_user_id?:  number;
+    /** ID del cliente CRM (`cliente.id`) */
+    cliente_id?:        number;
+    /** DNI del cliente CRM — búsqueda parcial */
+    dni_cliente?:       string;
+    /** Nro. Cliente en Aikon (`cliente.external_id`) — coincidencia exacta */
+    nro_cliente?:       string;
     /** Búsqueda parcial sobre email_cliente_snapshot */
     email_cliente?:     string;
+
+    zona_envio_id?:     number;
     facturado?:         boolean;
+
+    // ── Comprobante (filtro compuesto — se aplica solo si los 4 están presentes) ──
+    comprobante_codigo?:     string;
+    comprobante_sucursal?:   string;
+    comprobante_nro_fiscal?: string;
+    comprobante_tipo?:       ComprobanteOrdenTipoEnum;
+
     /** ISO date string. Filtro sobre created_at */
     fecha_desde?:       string;
     fecha_hasta?:       string;
