@@ -172,6 +172,8 @@ export interface OrdenEcommerceListado {
     nombre_cliente_snapshot:  string;
     email_cliente_snapshot:   string;
     telefono_cliente_snapshot: string | null;
+    /** Presente en listados operativos de envío a domicilio */
+    entrega_domicilio_snapshot: EntregaDomicilioSnapshot | null;
     created_at:               string;
     updated_at:               string;
     /**
