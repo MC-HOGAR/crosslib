@@ -172,8 +172,12 @@ export interface OrdenEcommerceListado {
     nombre_cliente_snapshot:  string;
     email_cliente_snapshot:   string;
     telefono_cliente_snapshot: string | null;
-    /** Presente en listados operativos de envío a domicilio */
+    // Snapshots de entrega congelados al crear la orden. El backend los devuelve
+    // en los cinco endpoints de listado (`ORDEN_INCLUDE_LISTADO` usa `include`,
+    // que trae todos los escalares de `ec_orden`). Solo uno está presente según
+    // `tipo_entrega`; el otro llega en null.
     entrega_domicilio_snapshot: EntregaDomicilioSnapshot | null;
+    entrega_sucursal_snapshot:  EntregaSucursalSnapshot  | null;
     created_at:               string;
     updated_at:               string;
     /**
@@ -206,8 +210,8 @@ export interface OrdenEcommerceDetalle extends Omit<OrdenEcommerceListado, '_cou
     comprobante_tipo:                ComprobanteOrdenTipoEnum | null;
     /** URL pública CloudFront del PDF — calculada por el backend */
     comprobante_factura_url:         string | null;
-    entrega_domicilio_snapshot:      EntregaDomicilioSnapshot | null;
-    entrega_sucursal_snapshot:       EntregaSucursalSnapshot | null;
+    // `entrega_domicilio_snapshot` y `entrega_sucursal_snapshot` se heredan de
+    // `OrdenEcommerceListado` — no se redeclaran acá.
     items:                           OrdenItem[];
     /** `MOTOR_REGLAS` | `TIMEOUT_PAGO` | `MANUAL` */
     origen_cancelacion:              string | null;
