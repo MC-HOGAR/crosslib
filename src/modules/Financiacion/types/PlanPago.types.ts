@@ -4,6 +4,19 @@ import { Banco } from './Bancos.types'
 import { NroComercio } from './NroComercio.types'
 import Decimal from 'decimal.js'
 
+/**
+ * Canal de venta en el que vale un plan de pago.
+ * Un plan pertenece siempre a un canal específico o a todos: el modelo no
+ * representa combinaciones parciales. Si se suma un canal nuevo, se agrega un
+ * único valor y los planes en TODOS_LOS_CANALES lo incluyen por definición.
+ * `null` en la columna significa "sin clasificar", que NO es lo mismo que TODOS_LOS_CANALES.
+ */
+export enum CanalVentaPlan {
+    WEB = 'WEB',
+    TIENDA_FISICA = 'TIENDA_FISICA',
+    TODOS_LOS_CANALES = 'TODOS_LOS_CANALES',
+}
+
 export interface PlanPago {
     id: number;
     comentariosWeb: string | null;
@@ -14,6 +27,7 @@ export interface PlanPago {
     activo: boolean;
     mostrar_en_calculadora: boolean;
     badge_img_url: string | null;
+    canal_venta: CanalVentaPlan | null;
     fecha_desde_valido: string | null;
     fecha_hasta_valido: string | null;
     created_at: string;
@@ -51,6 +65,7 @@ export interface PlanPagoPrisma {
   activo: boolean;
   mostrar_en_calculadora: boolean;
   badge_img_url: string | null;
+  canal_venta: CanalVentaPlan | null;
   fecha_desde_valido: Date | null;
   fecha_hasta_valido: Date | null;
   created_at: Date;
