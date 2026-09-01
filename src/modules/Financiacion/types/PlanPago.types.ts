@@ -41,10 +41,7 @@ export interface PlanPago {
     porcentaje_reintegro: string | null;
     activo: boolean;
     mostrar_en_calculadora: boolean;
-    /** Key de S3 de la imagen del bloque de planes destacados de la ficha de producto. */
     badge_img_url: string | null;
-    /** Key de S3 de la imagen de la parte inferior de la card del listado. */
-    imagen_key_card: string | null;
     canal_venta: CanalVentaPlan | null;
     tipo_plan: TipoPlan | null;
     fecha_desde_valido: string | null;
@@ -95,12 +92,13 @@ export interface PlanPagoPrisma {
   porcentaje_reintegro: Decimal | null;
   activo: boolean;
   mostrar_en_calculadora: boolean;
-  /** Key de S3 de la imagen del bloque de planes destacados de la ficha de producto. */
   badge_img_url: string | null;
-  /** Key de S3 de la imagen de la parte inferior de la card del listado. */
-  imagen_key_card: string | null;
-  canal_venta: CanalVentaPlan | null;
-  tipo_plan: TipoPlan | null;
+  // Los enums van como unión de literales y no como el enum de TS: esta interface
+  // describe la fila que devuelve Prisma, y Prisma emite `$Enums.X`, que es una unión
+  // de strings. Un enum de TS es nominal, así que "WEB" no le es asignable y el
+  // consumidor no puede pasarle la fila sin castear.
+  canal_venta: `${CanalVentaPlan}` | null;
+  tipo_plan: `${TipoPlan}` | null;
   fecha_desde_valido: Date | null;
   fecha_hasta_valido: Date | null;
   created_at: Date;
@@ -112,9 +110,7 @@ export interface PlanPagoPrisma {
 
 /* Se utiliza en Presupuesto */
 /**
- * No lleva `tipo_plan` ni `imagen_key_card` a propósito: al presupuesto sólo
- * entran planes generales, y la imagen que muestra es la de la ficha
- * (`badge_img_url`), no la de la card.
+ * No lleva `tipo_plan` a propósito: al presupuesto sólo entran planes generales.
  */
 export type PlanSnapshot = {
   id: number;
