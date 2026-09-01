@@ -34,7 +34,10 @@ export interface ArticuloIndexObject {
     porcentaje_reintegro: string | null;
     activo: boolean;
     mostrar_en_calculadora: boolean;
+    /** Imagen del bloque de destacados de la ficha; la card no la usa. */
     badge_img_url: string | null;
+    /** Imagen de la parte inferior de la card del listado. */
+    imagen_key_card: string | null;
     fecha_desde_valido: string | null;
     fecha_hasta_valido: string | null;
     created_at: string;

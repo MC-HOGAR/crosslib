@@ -17,6 +17,21 @@ export enum CanalVentaPlan {
     TODOS_LOS_CANALES = 'TODOS_LOS_CANALES',
 }
 
+/**
+ * Clasificación de un plan de pago según a qué artículos alcanza.
+ * PLAN_GENERAL vale para todo el catálogo —el comportamiento histórico—;
+ * PLAN_ESPECIFICO vale sólo para los artículos a los que se lo vincule.
+ * `null` en la columna significa "sin clasificar", que NO es un tercer modo de
+ * funcionamiento: es el estado transitorio de los planes anteriores a esta
+ * capacidad, y un plan sin clasificar no participa de ninguna superficie que
+ * exija una clasificación.
+ * El tipo es inmutable: se fija al crear el plan y no entra en la edición.
+ */
+export enum TipoPlan {
+    PLAN_GENERAL = 'PLAN_GENERAL',
+    PLAN_ESPECIFICO = 'PLAN_ESPECIFICO',
+}
+
 export interface PlanPago {
     id: number;
     comentariosWeb: string | null;
@@ -26,8 +41,12 @@ export interface PlanPago {
     porcentaje_reintegro: string | null;
     activo: boolean;
     mostrar_en_calculadora: boolean;
+    /** Key de S3 de la imagen del bloque de planes destacados de la ficha de producto. */
     badge_img_url: string | null;
+    /** Key de S3 de la imagen de la parte inferior de la card del listado. */
+    imagen_key_card: string | null;
     canal_venta: CanalVentaPlan | null;
+    tipo_plan: TipoPlan | null;
     fecha_desde_valido: string | null;
     fecha_hasta_valido: string | null;
     created_at: string;
@@ -54,6 +73,18 @@ export enum EstadoPlanFiltro {
   AMBOS = 'ambos',
 }
 
+/**
+ * Filtro por clasificación para el listado de planes del panel interno.
+ * SIN_CLASIFICAR filtra por `tipo_plan IS NULL`, que no es un valor del enum
+ * `TipoPlan`: es la ausencia de clasificación.
+ */
+export enum TipoPlanFiltro {
+  GENERALES = 'generales',
+  ESPECIFICOS = 'especificos',
+  SIN_CLASIFICAR = 'sin_clasificar',
+  TODOS = 'todos',
+}
+
 export interface PlanPagoPrisma {
   updated_at: Date;
   id: number;
@@ -64,8 +95,12 @@ export interface PlanPagoPrisma {
   porcentaje_reintegro: Decimal | null;
   activo: boolean;
   mostrar_en_calculadora: boolean;
+  /** Key de S3 de la imagen del bloque de planes destacados de la ficha de producto. */
   badge_img_url: string | null;
+  /** Key de S3 de la imagen de la parte inferior de la card del listado. */
+  imagen_key_card: string | null;
   canal_venta: CanalVentaPlan | null;
+  tipo_plan: TipoPlan | null;
   fecha_desde_valido: Date | null;
   fecha_hasta_valido: Date | null;
   created_at: Date;
@@ -76,6 +111,11 @@ export interface PlanPagoPrisma {
 }
 
 /* Se utiliza en Presupuesto */
+/**
+ * No lleva `tipo_plan` ni `imagen_key_card` a propósito: al presupuesto sólo
+ * entran planes generales, y la imagen que muestra es la de la ficha
+ * (`badge_img_url`), no la de la card.
+ */
 export type PlanSnapshot = {
   id: number;
   comentariosWeb:                string | null;
