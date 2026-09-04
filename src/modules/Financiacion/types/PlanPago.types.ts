@@ -36,6 +36,13 @@ export interface PlanPago {
     id: number;
     comentariosWeb: string | null;
     comentarios: string | null;
+    /**
+     * Aclaración del plan dirigida al vendedor, distinta de `comentariosWeb` (de cara
+     * al cliente) y de `comentarios` (nota interna del administrador). Es un dato
+     * operativo interno: sólo se lee en la calculadora del panel vendedor y NO viaja
+     * por la API pública del storefront.
+     */
+    comentarios_portal_vendedor: string | null;
     cantidad_cuotas: number;
     coeficiente_recargo_descuento: string;
     porcentaje_reintegro: string | null;
@@ -52,6 +59,45 @@ export interface PlanPago {
     tarjeta_id: number;
     banco_id: number;
     nro_comercio_id: number;
+}
+
+/**
+ * Lo que la API **pública** de financiación emite de un plan: exactamente lo que el
+ * storefront consume, ni un campo más.
+ *
+ * Existe para que el `select` del endpoint público se pueda tipar contra algo. Sin
+ * eso, el `findMany` devuelve la fila entera y cada columna nueva del modelo —un
+ * comentario interno, un número de comercio— se publica sola en mchogar.com.
+ *
+ * Es una **lista blanca**: para que un campo se publique hay que agregarlo acá a
+ * propósito. Una lista negra (`Omit`) habría que acordarse de actualizarla.
+ */
+export type PlanPagoPublico = Pick<
+  PlanPago,
+  | 'id'
+  | 'cantidad_cuotas'
+  | 'coeficiente_recargo_descuento'
+  | 'porcentaje_reintegro'
+  | 'comentariosWeb'
+  | 'canal_venta'
+  | 'badge_img_url'
+>
+
+/**
+ * Lo que la API **del panel vendedor** emite de un plan: el plan completo más los dos
+ * datos operativos que el vendedor necesita para cobrar.
+ *
+ * Los dos campos vienen aplanados y no anidados como los devuelve Prisma: `nro_comercio`
+ * cuelga del plan y `nombreTerminalCaptura` de su servicio de pago, pero para la fila de
+ * la calculadora son dos datos del mismo renglón y se leen juntos.
+ *
+ * Este tipo NO SHALL viajar por ningún endpoint sin autenticar.
+ */
+export type PlanPagoVendedor = PlanPago & {
+  /** Número de comercio del plan. `null` si el plan no tiene uno asignado. */
+  nro_comercio: string | null
+  /** Terminal de captura del servicio de pago del plan. `null` si no está cargada. */
+  nombreTerminalCaptura: string | null
 }
 
 export type PlanPagoIncludingServicioPago = PlanPago & { finan_servicio_pago: ServicioPago } 
@@ -87,6 +133,7 @@ export interface PlanPagoPrisma {
   id: number;
   comentariosWeb: string | null;
   comentarios: string | null;
+  comentarios_portal_vendedor: string | null;
   cantidad_cuotas: number;
   coeficiente_recargo_descuento: Decimal;
   porcentaje_reintegro: Decimal | null;
