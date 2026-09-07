@@ -100,6 +100,32 @@ export type PlanPagoVendedor = PlanPago & {
   nombreTerminalCaptura: string | null
 }
 
+/**
+ * Los datos operativos de un plan, leídos **en su estado actual**, para el bloque del
+ * detalle del presupuesto del panel vendedor.
+ *
+ * No sale del `plan_snapshot` del presupuesto a propósito: el snapshot congela lo que se
+ * le prometió al cliente —cuotas, coeficiente, servicio, tarjeta, banco—, y esto responde
+ * otra pregunta, que es del presente: *¿con qué terminal y qué número de comercio se cobra
+ * esto ahora?*. Si alguien corrige una terminal mal cargada, el vendedor tiene que ver la
+ * corregida.
+ *
+ * Que estos campos **no** entren a `PlanSnapshot` es lo que mantiene al PDF del presupuesto
+ * y al email del cliente fuera por construcción: los dos leen sólo del snapshot.
+ *
+ * Este tipo NO SHALL viajar por ningún endpoint sin autenticar.
+ */
+export type DatosOperativosPlan = {
+  /** Terminal de captura del servicio de pago del plan. `null` si no está cargada. */
+  nombreTerminalCaptura: string | null
+  /** Número de comercio del plan. `null` si el plan no tiene uno asignado. */
+  nro_comercio: string | null
+  /** Aclaración del plan dirigida al vendedor. `null` si no está cargada. */
+  comentarios_portal_vendedor: string | null
+  /** Canal de venta del plan. `null` significa "sin clasificar". */
+  canal_venta: CanalVentaPlan | null
+}
+
 export type PlanPagoIncludingServicioPago = PlanPago & { finan_servicio_pago: ServicioPago } 
 
 export type PlanPagoIncludingTarjeta = PlanPago & { finan_tarjeta: Tarjeta }
