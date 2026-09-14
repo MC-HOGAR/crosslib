@@ -32,7 +32,49 @@ export enum TipoPlan {
     PLAN_ESPECIFICO = 'PLAN_ESPECIFICO',
 }
 
-export interface PlanPago {
+/**
+ * Días de la semana en que corre un plan de pago.
+ *
+ * Los identificadores van sin tilde ni eñe (`MIERCOLES`, `SABADO`); las abreviaturas que
+ * ve el usuario —`MIE`, `SÁB`— son de presentación y las arma cada frontend.
+ *
+ * Un plan **sin días declarados corre todos los días**, que es el comportamiento de los
+ * planes anteriores a esta capacidad. La lista vacía NUNCA significa "no corre nunca": si
+ * lo significara, una consulta que se olvide de traer los días apagaría un plan en
+ * producción sin que nadie se entere.
+ *
+ * El domingo existe en el enum aunque la tienda física no abra: un plan exclusivo de la
+ * compra web sí puede correr domingo.
+ */
+export enum DiaSemana {
+    LUNES = 'LUNES',
+    MARTES = 'MARTES',
+    MIERCOLES = 'MIERCOLES',
+    JUEVES = 'JUEVES',
+    VIERNES = 'VIERNES',
+    SABADO = 'SABADO',
+    DOMINGO = 'DOMINGO',
+}
+
+/**
+ * Cuándo corre un plan, y si corre hoy.
+ *
+ * `dias_semana` llega siempre **ordenado de lunes a domingo**, sin importar en qué orden se
+ * declararon los días, y vacío cuando el plan corre todos los días.
+ *
+ * `disponible_hoy` NO es una columna: lo resuelve el **backend** en zona horaria de
+ * Argentina y viaja ya resuelto. El cliente no lo recalcula. Va así para que las tres
+ * superficies que muestran planes —storefront, calculadora del panel vendedor y selector
+ * de presupuesto— coincidan siempre, y para que el storefront no arriesgue un hydration
+ * mismatch entre el render del servidor y el del navegador: el día correcto es el de la
+ * tienda, no el del reloj del visitante.
+ */
+export type DisponibilidadPorDia = {
+    dias_semana: DiaSemana[];
+    disponible_hoy: boolean;
+}
+
+export interface PlanPago extends DisponibilidadPorDia {
     id: number;
     comentariosWeb: string | null;
     comentarios: string | null;
@@ -71,8 +113,14 @@ export interface PlanPago {
  *
  * Es una **lista blanca**: para que un campo se publique hay que agregarlo acá a
  * propósito. Una lista negra (`Omit`) habría que acordarse de actualizarla.
+ *
+ * Va partido en dos porque no todo lo que emite la API es una columna. Contra
+ * `PlanPagoPublicoColumnas` se tipa el `select` del endpoint, y ahí sigue valiendo la
+ * garantía original: una columna nueva del modelo no se publica sola. `PlanPagoPublico` le
+ * suma los campos derivados de `DisponibilidadPorDia`, que ninguna columna puede llenar y
+ * que por eso no tienen lugar en el `select`.
  */
-export type PlanPagoPublico = Pick<
+export type PlanPagoPublicoColumnas = Pick<
   PlanPago,
   | 'id'
   | 'cantidad_cuotas'
@@ -82,6 +130,8 @@ export type PlanPagoPublico = Pick<
   | 'canal_venta'
   | 'badge_img_url'
 >
+
+export type PlanPagoPublico = PlanPagoPublicoColumnas & DisponibilidadPorDia
 
 /**
  * Lo que la API **del panel vendedor** emite de un plan: el plan completo más los dos
