@@ -101,7 +101,42 @@ export interface PlanPago extends DisponibilidadPorDia {
     tarjeta_id: number;
     banco_id: number;
     nro_comercio_id: number;
+    /**
+     * Habilita el plan para el checkout de Fiserv. Sólo puede estar en `true` con canal
+     * `WEB` o `TODOS_LOS_CANALES`. `null` es el estado de los planes anteriores a Fiserv,
+     * y se trata igual que `false`.
+     */
+    habilitar_pago_online_fiserv: boolean | null;
+    /**
+     * Store de Fiserv con el que se cobra el plan, del tipo de su tarjeta. Es un dato
+     * interno de panel-interno: NO SHALL viajar por la API pública ni por la del panel
+     * vendedor, que sigue mostrando sólo el número de comercio de Clover.
+     */
+    fiserv_connect_store_id: number | null;
 }
+
+/**
+ * Tipo de un store de Fiserv Checkout Connect. No existe un tipo que procese crédito y
+ * débito a la vez. Unión de literales, como sale de Prisma.
+ */
+export type FiservConnectStoreTipo = 'UNICAMENTE_CREDITO' | 'UNICAMENTE_DEBITO'
+
+/**
+ * El store de Fiserv tal como se muestra junto a un plan en panel-interno. Varios stores
+ * pueden compartir número de comercio, así que se identifica por `nombre` y `store_id`.
+ * Nunca lleva el Shared Secret.
+ */
+export type FiservConnectStorePlan = {
+    id: number;
+    nombre: string;
+    /** El "storename" de Fiserv. */
+    store_id: string;
+    tipo: FiservConnectStoreTipo;
+    activo: boolean;
+    nro_comercio_online: { id: number; nro_comercio: string };
+}
+
+export type PlanPagoIncludingFiservConnectStore = PlanPago & { fiserv_connect_store: FiservConnectStorePlan | null }
 
 /**
  * Lo que la API **pública** de financiación emite de un plan: exactamente lo que el
@@ -229,6 +264,8 @@ export interface PlanPagoPrisma {
   tarjeta_id: number;
   banco_id: number;
   nro_comercio_id: number | null;
+  habilitar_pago_online_fiserv: boolean | null;
+  fiserv_connect_store_id: number | null;
 }
 
 /* Se utiliza en Presupuesto */
