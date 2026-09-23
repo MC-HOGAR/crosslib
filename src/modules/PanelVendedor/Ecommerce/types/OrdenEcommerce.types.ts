@@ -44,6 +44,8 @@ export enum PagoEstadoEnum {
     REEMBOLSADO     = 'REEMBOLSADO',
     CONTRACARGO     = 'CONTRACARGO',
     EN_MEDIACION    = 'EN_MEDIACION',
+    /** Venta de Fiserv anulada (Void) desde panel-interno. */
+    ANULADO         = 'ANULADO',
 }
 
 // ── Snapshots de entrega (inmutables al momento de creación de la orden) ──────
@@ -140,6 +142,48 @@ export interface PagoMercadoPagoDetalle {
     mp_card_id_number:        string | null;
 }
 
+/**
+ * Plan con el que se cobró un pago de Fiserv, tal como estaba al iniciar el pago: el plan
+ * puede editarse o desactivarse después y el detalle tiene que seguir mostrándolo.
+ */
+export interface PlanSnapshotFiservConnect {
+    id:                   number;
+    cantidad_cuotas:      number;
+    coeficiente:          string;
+    porcentaje_reintegro: string | null;
+    comentarios_web:      string | null;
+    canal_venta:          string | null;
+    tipo_plan:            string | null;
+    tarjeta:              { id: number; nombre: string | null; tipo: string | null };
+    banco:                { id: number; nombre: string | null };
+    servicio_pago:        { id: number; nombre: string | null };
+}
+
+/** Detalle de un pago de Fiserv Checkout Connect. */
+export interface PagoFiservConnectDetalle {
+    oid:                     string;
+    storename:               string;
+    plan_snapshot:           PlanSnapshotFiservConnect;
+    numero_cuotas:           number;
+    valor_cuota:             number;
+    /** Tal como lo mandó Fiserv, p. ej. `N:05:Do not honour`. */
+    approval_code:           string | null;
+    status:                  string | null;
+    codigo_autorizacion:     string | null;
+    /** Cupón real de Fiserv; NO es `nro_cupon`, el correlativo diario para Aikon. */
+    nro_cupon_fiserv:        string | null;
+    ipg_transaction_id:      string | null;
+    /** Motivo original de Fiserv, en inglés. */
+    fail_reason:             string | null;
+    processor_response_code: string | null;
+    ccbrand:                 string | null;
+    /** Últimos 4 de la tarjeta original, no del token. */
+    tarjeta_ultimos4:        string | null;
+    fecha_aprobacion:        string | null;
+    /** Mensaje en español del rechazo; null si el pago no está rechazado. */
+    motivo_cliente:          string | null;
+}
+
 /** Registro de pago asociado a la orden */
 export interface OrdenPago {
     id:         number;
@@ -153,6 +197,8 @@ export interface OrdenPago {
 
     /** Presente solo en el detalle de orden — null en listados */
     mercadopago: PagoMercadoPagoDetalle | null;
+    /** Presente solo en el detalle de orden — null en listados y en pagos de MercadoPago */
+    fiserv_connect: PagoFiservConnectDetalle | null;
 }
 
 // ── Respuesta de listado (Seguimiento + Órdenes generales) ────────────────────
@@ -319,14 +365,19 @@ export interface TicketPagoMpDetalle {
     mp_card_id_number:        string | null;
 }
 
+/** Pago de Fiserv en el ticket: el mismo detalle, sin la traducción del motivo. */
+export type TicketPagoFiservConnectDetalle = Omit<PagoFiservConnectDetalle, 'motivo_cliente'>;
+
 export interface TicketPagoPago {
-    id:          number;
-    estado:      PagoEstadoEnum;
-    monto:       number;
-    tipo_pago:   TipoPagoEnum;
-    nro_cupon:   number | null;
-    nro_lote:    string | null;
-    mercadopago: TicketPagoMpDetalle | null;
+    id:             number;
+    estado:         PagoEstadoEnum;
+    monto:          number;
+    tipo_pago:      TipoPagoEnum;
+    proveedor:      string;
+    nro_cupon:      number | null;
+    nro_lote:       string | null;
+    mercadopago:    TicketPagoMpDetalle | null;
+    fiserv_connect: TicketPagoFiservConnectDetalle | null;
 }
 
 export interface OrdenTicketPagoData {
@@ -380,4 +431,5 @@ export const PAGO_ESTADO_LABEL: Record<PagoEstadoEnum, string> = {
     [PagoEstadoEnum.REEMBOLSADO]:  'Reembolsado',
     [PagoEstadoEnum.CONTRACARGO]:  'Contracargo',
     [PagoEstadoEnum.EN_MEDIACION]: 'En mediación',
+    [PagoEstadoEnum.ANULADO]:      'Anulado',
 }
