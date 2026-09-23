@@ -163,6 +163,8 @@ export interface PlanSnapshotFiservConnect {
 export interface PagoFiservConnectDetalle {
     oid:                     string;
     storename:               string;
+    /** Número de comercio del store al iniciar el pago; null en pagos anteriores a la columna. */
+    nro_comercio:            string | null;
     plan_snapshot:           PlanSnapshotFiservConnect;
     numero_cuotas:           number;
     valor_cuota:             number;
